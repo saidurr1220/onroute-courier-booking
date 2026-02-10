@@ -50,7 +50,7 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 		}
 
 		// The folder name we want (e.g., 'onroute-courier-booking')
-		$plugin_name = dirname( $this->slug );
+		$plugin_name = 'onroute-courier-booking';
 		$new_source  = trailingslashit( $remote_source ) . $plugin_name;
 
 		// If the source (extracted GitHub folder) is different from our plugin folder name
@@ -124,13 +124,13 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 			return $transient;
 		}
 
-		$latest_version = str_replace( 'v', '', $repo_info->tag_name );
+		$latest_version = ltrim( $repo_info->tag_name, 'v' );
 		$current_version = ONROUTE_COURIER_BOOKING_VERSION;
 
 		if ( version_compare( $latest_version, $current_version, '>' ) ) {
 			$obj = new stdClass();
-			$obj->slug        = dirname( $this->slug );
-			$obj->plugin      = $this->slug;
+			$obj->slug        = 'onroute-courier-booking'; // Explicit short slug
+			$obj->plugin      = $this->slug;            // Full: 'onroute-courier-booking/onroute-courier-booking.php'
 			$obj->new_version = $latest_version;
 			$obj->url         = "https://github.com/{$this->username}/{$this->repo}";
 			$obj->package     = $repo_info->zipball_url;
@@ -145,9 +145,9 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 	 * Show Plugin Details in Popup
 	 */
 	public function plugin_popup( $false, $action, $args ) {
-		$plugin_slug = dirname( $this->slug );
+		$short_slug = 'onroute-courier-booking';
 		
-		if ( ! isset( $args->slug ) || ( $args->slug !== $this->slug && $args->slug !== $plugin_slug ) ) {
+		if ( ! isset( $args->slug ) || ( $args->slug !== $this->slug && $args->slug !== $short_slug ) ) {
 			return $false;
 		}
 
@@ -159,8 +159,8 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		$api_obj = new stdClass();
 		$api_obj->name           = 'OnRoute Courier Booking';
-		$api_obj->slug           = $plugin_slug;
-		$api_obj->version        = str_replace( 'v', '', $repo_info->tag_name );
+		$api_obj->slug           = $short_slug;
+		$api_obj->version        = ltrim( $repo_info->tag_name, 'v' );
 		$api_obj->author         = '<a href="https://saidur-it.vercel.app">Md. Saidur Rahman</a>';
 		$api_obj->homepage       = "https://github.com/{$this->username}/{$this->repo}";
 		$api_obj->requires       = '5.8';
