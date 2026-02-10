@@ -129,7 +129,7 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		if ( version_compare( $latest_version, $current_version, '>' ) ) {
 			$obj = new stdClass();
-			$obj->slug        = $this->slug;
+			$obj->slug        = dirname( $this->slug );
 			$obj->plugin      = $this->slug;
 			$obj->new_version = $latest_version;
 			$obj->url         = "https://github.com/{$this->username}/{$this->repo}";
@@ -145,7 +145,9 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 	 * Show Plugin Details in Popup
 	 */
 	public function plugin_popup( $false, $action, $args ) {
-		if ( ! isset( $args->slug ) || $args->slug !== $this->slug ) {
+		$plugin_slug = dirname( $this->slug );
+		
+		if ( ! isset( $args->slug ) || ( $args->slug !== $this->slug && $args->slug !== $plugin_slug ) ) {
 			return $false;
 		}
 
@@ -157,7 +159,7 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		$api_obj = new stdClass();
 		$api_obj->name           = 'OnRoute Courier Booking';
-		$api_obj->slug           = $this->slug;
+		$api_obj->slug           = $plugin_slug;
 		$api_obj->version        = str_replace( 'v', '', $repo_info->tag_name );
 		$api_obj->author         = '<a href="https://saidur-it.vercel.app">Md. Saidur Rahman</a>';
 		$api_obj->homepage       = "https://github.com/{$this->username}/{$this->repo}";
