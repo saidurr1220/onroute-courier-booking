@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "onroute-courier-booking/booking-form",
+    "title": "Courier Booking Form",
+    "category": "common",
+    "description": "A complete 4-step booking form for the OnRoute Courier system",
+    "keywords": [
+        "booking",
+        "courier",
+        "form",
+        "quote"
+    ],
+    "icon": "location-alt",
+    "textdomain": "onroute-courier-booking",
+    "supports": {
+        "html": false,
+        "className": true,
+        "align": [
+            "wide",
+            "full"
+        ]
+    }
+}

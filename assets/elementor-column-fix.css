@@ -1,0 +1,539 @@
+/**
+ * Elementor 50% Column Optimization for Quote Form
+ */
+
+/* ========================================
+   QUICK QUOTE FORM FIXES FOR ELEMENTOR
+   ======================================== */
+
+/* Quick Quote Container */
+.elementor-widget-shortcode .ocb-quick-quote-wrapper {
+    max-width: 100%;
+    padding: 0;
+}
+
+.elementor-widget-shortcode .ocb-quick-quote-container {
+    padding: 25px;
+}
+
+/* Service Type Radio Buttons - Single Selection */
+.elementor-widget-shortcode .ocb-service-type-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.elementor-widget-shortcode .ocb-radio-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 14px 18px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    color: #ffffff !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #C62828 !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-box {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    background: transparent !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card input[type="radio"]:checked + .ocb-radio-box {
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.elementor-widget-shortcode .ocb-check-icon {
+    width: 14px !important;
+    height: 14px !important;
+    max-width: 14px !important;
+    max-height: 14px !important;
+    color: #ffffff !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card input[type="radio"]:checked + .ocb-radio-box .ocb-check-icon {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    color: #C62828 !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card input[type="radio"]:not(:checked) + .ocb-radio-box .ocb-check-icon {
+    opacity: 0 !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-text {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card input[type="radio"]:not(:checked) ~ .ocb-radio-text {
+    color: #ffffff !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card input[type="radio"]:checked ~ .ocb-radio-text {
+    color: #ffffff !important;
+}
+
+.elementor-widget-shortcode .ocb-radio-card:has(input[type="radio"]:checked) {
+    border-color: #C62828 !important;
+    background: #C62828 !important;
+}
+
+/* ========================================
+   BOOKING FORM FIXES
+   ======================================== */
+
+/* Ensure form adapts to narrow columns */
+.elementor-column-gap-default > .elementor-column > .elementor-widget-wrap .ocb-booking-wrapper,
+.elementor-widget-shortcode .ocb-booking-wrapper {
+    max-width: 100%;
+    padding: 25px 20px;
+    margin: 0 auto;
+}
+
+/* Quick Quote specific styling */
+.elementor-widget-shortcode .ocb-quick-quote-wrapper {
+    padding: 0;
+}
+
+/* Force single column layout in narrow containers */
+.elementor-column-gap-default > .elementor-column > .elementor-widget-wrap .ocb-form-grid-2,
+.elementor-widget-shortcode .ocb-form-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+}
+
+/* Responsive tabs */
+.elementor-widget-shortcode .ocb-nav-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+/* Make buttons full width in narrow columns */
+.elementor-widget-shortcode .ocb-select-address-btn {
+    width: 100%;
+    margin-top: 5px;
+    background: #C62828 !important;
+    color: #fff !important;
+}
+
+.elementor-widget-shortcode .ocb-select-address-btn:hover {
+    background: #B71C1C !important;
+}
+
+/* Adjust step navigation - Fixed button alignment */
+.elementor-widget-shortcode .ocb-step-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.elementor-widget-shortcode .ocb-step-nav .ocb-btn-back {
+    margin-right: auto;
+    order: 1;
+}
+
+.elementor-widget-shortcode .ocb-step-nav .ocb-btn-next,
+.elementor-widget-shortcode .ocb-step-nav .ocb-btn-submit {
+    margin-left: auto;
+    order: 2;
+}
+
+.elementor-widget-shortcode .ocb-step-nav .ocb-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .elementor-widget-shortcode .ocb-step-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn {
+        width: 100%;
+        margin: 0 !important;
+        padding: 14px 20px;
+        font-size: 15px;
+        order: unset !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-back {
+        order: 2;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-next,
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-submit {
+        order: 1;
+    }
+}
+
+/* BACK Button */
+.elementor-widget-shortcode .ocb-btn-back,
+.ocb-btn-back {
+    background: #ffffff !important;
+    color: #C62828 !important;
+    border: 2px solid #C62828 !important;
+}
+
+.elementor-widget-shortcode .ocb-btn-back:hover,
+.ocb-btn-back:hover {
+    background: #C62828 !important;
+    color: #ffffff !important;
+}
+
+/* NEXT Button */
+.elementor-widget-shortcode .ocb-btn-next,
+.ocb-btn-next {
+    background: #C62828 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.elementor-widget-shortcode .ocb-btn-next:hover,
+.ocb-btn-next:hover {
+    background: #B71C1C !important;
+}
+
+/* Optimize datetime inputs */
+.elementor-widget-shortcode .ocb-datetime-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.elementor-widget-shortcode .ocb-date,
+.elementor-widget-shortcode .ocb-time {
+    flex: 1;
+    min-width: 140px;
+}
+
+/* Stack booking main content on smaller screens */
+.elementor-widget-shortcode .ocb-booking-main {
+    flex-direction: column;
+}
+
+.elementor-widget-shortcode .ocb-booking-content,
+.elementor-widget-shortcode .ocb-booking-sidebar {
+    width: 100%;
+}
+
+/* Adjust modal for mobile */
+@media (max-width: 768px) {
+    .ocb-modal-content {
+        width: 95%;
+        max-width: none;
+        margin: 20px auto;
+    }
+}
+
+/* Remove max-width constraint in Elementor columns */
+.elementor-widget-shortcode .ocb-quote-form-container,
+.elementor-widget-shortcode .ocb-booking-form-container,
+.elementor-widget-shortcode .ocb-quote-summary-container {
+    max-width: 100%;
+    padding: 30px 20px !important;
+    margin: 0 auto !important;
+}
+
+/* ========================================
+   MULTI-STEP FORM FIXES FOR ELEMENTOR
+   ======================================== */
+
+/* Ensure wrapper takes full space */
+.elementor-widget-shortcode .ocb-booking-wrapper {
+    max-width: 100% !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+}
+
+/* Fix Grid Layouts inside Elementor Containers - Auto Responsive */
+.elementor-widget-shortcode .ocb-form-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 15px !important;
+}
+
+.elementor-widget-shortcode .ocb-form-grid-2 .ocb-field-group:nth-child(3) {
+    grid-column: 1 / -1; /* Email full width */
+}
+
+/* Force stacked layout only on very small screens, 
+   ignoring Elementor container width constraints that might trigger false positives */
+@media (max-width: 480px) {
+    .elementor-widget-shortcode .ocb-form-grid-2 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Fix Labels and Inputs Alignment */
+.elementor-widget-shortcode .ocb-field-group label {
+    margin-bottom: 5px !important;
+    display: block !important;
+}
+
+.elementor-widget-shortcode .ocb-field {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Postcode/CitySprint Grid Fixes - Fully Responsive */
+.elementor-widget-shortcode .ocb-cs-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+}
+
+.elementor-widget-shortcode .ocb-cs-grid > label {
+    flex: 0 0 140px !important;
+    min-width: 140px !important;
+    max-width: 100% !important;
+    margin-top: 12px !important;
+}
+
+.elementor-widget-shortcode .ocb-cs-grid > div,
+.elementor-widget-shortcode .ocb-cs-grid > input,
+.elementor-widget-shortcode .ocb-cs-grid > select {
+    flex: 1 1 200px !important;
+    min-width: 200px !important;
+}
+
+@media (max-width: 768px) {
+    .elementor-widget-shortcode .ocb-cs-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+/* Fix Input Group internal alignment (e.g. Postcode + Select Button) */
+.elementor-widget-shortcode .ocb-cs-grid-postcode {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: center !important;
+}
+
+.elementor-widget-shortcode .ocb-cs-grid-postcode input[name*="postcode_display"] {
+    width: 100px !important;
+    min-width: 80px !important;
+}
+
+/* Fix Contact Name Input wrapping issue */
+.elementor-widget-shortcode .ocb-cs-grid-postcode input[name$="_contact"] {
+    width: auto !important;
+    min-width: 150px !important;
+    flex: 1 1 auto !important;
+}
+
+.elementor-widget-shortcode .ocb-select-address-btn {
+    white-space: nowrap !important;
+}
+
+/* Time Picker Fix */
+.elementor-widget-shortcode .ocb-datetime-wrapper {
+    flex: 1 !important;
+    width: auto !important;
+}
+
+.elementor-widget-shortcode .ocb-dt-group {
+    width: 100% !important;
+}
+
+/* Sidebar Fixes */
+.elementor-widget-shortcode .ocb-booking-sidebar {
+    width: 100% !important;
+}
+
+/* ========================================
+   COMPREHENSIVE ELEMENTOR CONTAINER RESPONSIVE FIXES
+   ======================================== */
+
+/* Ensure all containers are fully responsive */
+.elementor-column .ocb-booking-wrapper,
+.elementor-column .ocb-quick-quote-wrapper,
+.elementor-widget-text-editor .ocb-form-container {
+    box-sizing: border-box !important;
+}
+
+/* Full width responsive container */
+.elementor-container.elementor-container-full_width {
+    padding: 0 15px !important;
+}
+
+.elementor-section.elementor-section-boxed {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* Mobile-first responsive approach for all devices */
+/* Small phones - max 480px */
+@media (max-width: 480px) {
+    .elementor-widget-shortcode .ocb-quick-quote-wrapper {
+        padding: 0 !important;
+    }
+
+    .elementor-widget-shortcode .ocb-booking-wrapper {
+        padding: 18px 14px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-quote-summary-container {
+        padding: 18px 14px !important;
+        margin: 10px auto !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-form-card {
+        padding: 12px !important;
+        margin-bottom: 12px;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn {
+        width: 100% !important;
+        padding: 12px 16px !important;
+        font-size: 14px;
+        order: unset !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-back {
+        order: 2;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-next,
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn-submit {
+        order: 1;
+    }
+    
+    .elementor-widget-shortcode .ocb-field {
+        font-size: 16px !important;
+        padding: 10px 8px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-form-grid-2 {
+        gap: 10px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-vehicles-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-nav-tabs {
+        font-size: 11px;
+        padding: 0 0 10px 0;
+    }
+    
+    .elementor-widget-shortcode .ocb-nav-tab {
+        padding: 8px 12px !important;
+        font-size: 11px;
+        flex-shrink: 0;
+    }
+    
+    .elementor-widget-shortcode .ocb-quote-header h1 {
+        font-size: 20px;
+    }
+    
+    .elementor-widget-shortcode .ocb-service-title {
+        font-size: 16px;
+    }
+    
+    .elementor-widget-shortcode .ocb-select-address-btn {
+        width: 100% !important;
+        padding: 10px 12px !important;
+        font-size: 13px;
+    }
+}
+
+/* Tablets - 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    .elementor-widget-shortcode .ocb-quick-quote-wrapper {
+        padding: 0 !important;
+    }
+
+    .elementor-widget-shortcode .ocb-booking-wrapper {
+        padding: 20px 16px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-quote-summary-container {
+        padding: 25px 18px !important;
+        margin: 15px auto !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-form-card {
+        padding: 15px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn {
+        width: 100% !important;
+        padding: 12px 20px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-field {
+        font-size: 15px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-vehicles-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Small desktops - 769px and up */
+@media (min-width: 769px) {
+    .elementor-widget-shortcode .ocb-booking-wrapper {
+        padding: 25px 20px !important;
+    }
+
+    .elementor-widget-shortcode .ocb-quote-summary-container {
+        padding: 30px 25px !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-quick-quote-wrapper {
+        padding: 0 !important;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav {
+        flex-direction: row;
+    }
+    
+    .elementor-widget-shortcode .ocb-step-nav .ocb-btn {
+        width: auto;
+        padding: 12px 28px;
+    }
+    
+    .elementor-widget-shortcode .ocb-vehicles-row {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    }
+}

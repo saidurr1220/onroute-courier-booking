@@ -1,0 +1,345 @@
+/**
+ * Quick Quote Shortcode Styles
+ * OnRoute Red Theme - Matches main site design
+ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+/* ========================================
+   QUICK QUOTE WIDGET
+   ======================================== */
+
+.ocb-quick-quote-wrapper {
+	max-width: 450px;
+	margin: 0;
+	padding: 0 15px;
+	font-family: 'Poppins', sans-serif;
+	background: transparent !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.ocb-quick-quote-container {
+	background: rgba(0, 0, 0, 0.6); /* Neutral Dark Glass for best contrast on video */
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 12px;
+	padding: 35px 30px;
+	box-shadow: none;
+	position: relative;
+	overflow: hidden;
+	border: none;
+	color: #ffffff;
+}
+
+/* Title */
+.ocb-quick-title {
+	color: #ffffff !important;
+	font-size: 30px;
+	font-weight: 800;
+	text-align: center;
+	margin: 0 0 25px 0;
+	font-family: 'Rajdhani', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	border-bottom: 2px solid #d63031;
+	padding-bottom: 15px;
+	display: block;
+}
+
+/* Field Labels */
+.ocb-field-label {
+	display: block;
+	color: #ffffff !important; /* Forced White */
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 8px;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Strong shadow for readability */
+}
+
+.ocb-required {
+	color: #ff7675;
+}
+
+/* Input Fields */
+.ocb-input {
+	width: 100%;
+	padding: 14px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 6px;
+	font-size: 16px;
+	background: #ffffff; /* Keep inputs white specifically for user input visibility */
+	color: #000000;
+	transition: all 0.3s ease;
+}
+
+.ocb-input:focus {
+	border-color: #d63031;
+	box-shadow: 0 0 0 3px rgba(214, 48, 49, 0.3);
+	outline: none;
+}
+
+/* Radio Buttons */
+.ocb-radio-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+	padding: 14px 18px;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	margin-bottom: 8px;
+	transition: all 0.3s ease;
+	color: #ffffff;
+}
+
+.ocb-radio-card:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.ocb-radio-card:has(input[type="radio"]:checked) {
+	background: #d63031; /* Softened Red */
+	border-color: #d63031;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	color: #ffffff;
+}
+
+/* Submit Button */
+.ocb-btn-primary {
+	position: relative !important;
+	background: #d63031 !important; /* Softened Red */
+	color: #ffffff !important;
+	border: none !important;
+	padding: 16px !important;
+	font-size: 18px !important;
+	font-weight: 800 !important;
+	width: 100% !important;
+	border-radius: 8px !important;
+	cursor: pointer !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1px !important;
+	transition: all 0.3s ease !important;
+	box-shadow: 0 4px 15px rgba(214, 48, 49, 0.4) !important;
+}
+
+.ocb-btn-primary:hover {
+	background: #b33939 !important; /* Darker version of soft red */
+	transform: translateY(-2px) !important;
+	box-shadow: 0 6px 20px rgba(214, 48, 49, 0.5) !important;
+}
+
+
+.ocb-radio-card:has(input[type="radio"]:checked) {
+	background: #C62828; /* OnRoute Red */
+	border-color: #C62828;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	color: #ffffff;
+}
+
+.ocb-radio-card:has(input[type="radio"]:not(:checked)) {
+	/* Inactive state - white text for unchecked options */
+	color: #ffffff;
+}
+
+.ocb-radio-text {
+	font-size: 15px;
+	font-weight: 600;
+	color: #ffffff !important; /* Force White for all states */
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	display: inline-block;
+}
+
+.ocb-radio-indicator {
+	width: 18px;
+	height: 18px;
+	border: 2px solid #ffffff;
+	background: transparent;
+	border-radius: 50%;
+	position: relative;
+}
+
+.ocb-radio-card input[type="radio"]:checked + .ocb-radio-indicator {
+	background: #ffffff;
+	border-color: #ffffff;
+}
+
+.ocb-radio-card input[type="radio"]:checked + .ocb-radio-indicator::after {
+	content: '';
+	background: #C62828;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+}
+
+/* Submit Button */
+.ocb-btn-primary {
+	position: relative !important;
+	background: #C62828 !important;
+	color: #ffffff !important;
+	border: none !important;
+	padding: 16px !important;
+	font-size: 18px !important;
+	font-weight: 800 !important;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase !important;
+	width: 100%;
+	border-radius: 6px !important;
+	text-shadow: none;
+	margin-top: 15px;
+}
+
+.ocb-btn-primary:hover:not(:disabled) {
+	background: #000000 !important; /* Black on hover per your last request */
+	color: #ffffff !important;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ocb-btn-primary:active {
+	transform: translateY(0);
+}
+
+.ocb-btn-primary:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.ocb-btn-book {
+	width: auto;
+	padding: 14px 35px;
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+/* Loader */
+.ocb-btn-loader {
+	width: 24px;
+	height: 24px;
+	border: 3px solid rgba(255, 255, 255, 0.3);
+	border-top-color: #ffffff;
+	border-radius: 50%;
+	animation: ocb-spin 0.8s linear infinite;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+}
+
+@keyframes ocb-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+	.ocb-quick-quote-container {
+		padding: 25px 20px;
+	}
+
+	.ocb-quick-title {
+		font-size: 26px;
+	}
+
+	.ocb-service-type-options {
+		flex-direction: column;
+	}
+
+	.ocb-checkbox-card {
+		width: 100%;
+	}
+
+	.ocb-checkbox-text {
+		flex: 1;
+		justify-content: center;
+	}
+
+	.ocb-btn-primary {
+		padding: 18px !important;
+		font-size: 16px !important;
+	}
+
+	.ocb-btn-primary:hover:not(:disabled) {
+		background: #d63031 !important;
+		color: #ffffff !important;
+	}
+}
+
+/* Quick Quote Overlay Loader */
+.ocb-overlay-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 15, 15, 0.95);
+    z-index: 200000;
+    display: flex !important;
+    opacity: 0;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    pointer-events: none;
+}
+
+.ocb-overlay-loader.ocb-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.ocb-loader-content {
+    text-align: center;
+}
+
+.ocb-spinner-large {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    border-top: 4px solid #E84545;
+    border-radius: 50%;
+    animation: ocb-spin 0.9s linear infinite;
+    margin: 0 auto 25px;
+    box-shadow: 0 0 25px rgba(232, 69, 69, 0.4);
+    will-change: transform;
+}
+
+.ocb-loader-text {
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: ocb-pulse-text 1.8s ease-in-out infinite;
+}
+
+@keyframes ocb-pulse-text {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; text-shadow: 0 0 20px rgba(232, 69, 69, 0.5); }
+}
+
+@media (max-width: 480px) {
+    .ocb-spinner-large {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+    .ocb-loader-text {
+        font-size: 18px;
+    }
+}

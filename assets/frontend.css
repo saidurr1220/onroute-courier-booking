@@ -1,0 +1,634 @@
+﻿/* OnRoute Courier Booking - Modern Frontend Styles */
+
+.ocb-booking-container {
+	max-width: 1000px !important;
+	margin: 60px auto !important;
+	padding: 0 20px !important;
+	padding-left: max(20px, calc((100% - 1000px) / 2)) !important;
+	padding-right: max(20px, calc((100% - 1000px) / 2)) !important;
+	font-family: 'Inter', -apple-system, sans-serif !important;
+	color: #2D3748 !important;
+}
+
+/* Step Indicator Wrapper */
+.ocb-steps {
+	display: flex !important;
+	justify-content: space-between !important;
+	margin-bottom: 50px !important;
+	position: relative !important;
+	background: #ffffff !important;
+	padding: 30px !important;
+	border-radius: 20px !important;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+}
+
+.ocb-steps::before {
+	content: '' !important;
+	position: absolute !important;
+	top: 55px !important;
+	left: 10% !important;
+	right: 10% !important;
+	height: 3px !important;
+	background-color: #EDF2F7 !important;
+	z-index: 0 !important;
+}
+
+.ocb-step {
+	flex: 1 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	position: relative !important;
+	z-index: 1 !important;
+}
+
+.ocb-step-number {
+	width: 50px !important;
+	height: 50px !important;
+	border-radius: 50% !important;
+	background-color: #ffffff !important;
+	border: 3px solid #EDF2F7 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-weight: 800 !important;
+	font-size: 18px !important;
+	color: #A0AEC0 !important;
+	margin-bottom: 12px !important;
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.ocb-step-label {
+	font-size: 13px !important;
+	color: #718096 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1px !important;
+	font-weight: 700 !important;
+	text-align: center !important;
+}
+
+/* Active & Completed Steps */
+.ocb-step.ocb-step-active .ocb-step-number {
+	background-color: #C62828 !important;
+	border-color: #C62828 !important;
+	color: white !important;
+	transform: scale(1.1) !important;
+	box-shadow: 0 0 0 6px rgba(198, 40, 40, 0.1) !important;
+}
+
+.ocb-step.ocb-step-active .ocb-step-label {
+	color: #C62828 !important;
+}
+
+.ocb-step.ocb-step-completed .ocb-step-number {
+	background-color: #2F855A !important;
+	border-color: #2F855A !important;
+	color: white !important;
+}
+
+/* Modern Form Cards */
+.ocb-form {
+	background: #ffffff !important;
+	padding: 50px !important;
+	border-radius: 20px !important;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.08) !important;
+	border: 1px solid #EDF2F7 !important;
+}
+
+@media (max-width: 768px) {
+	.ocb-form { padding: 30px 20px !important; }
+}
+
+.ocb-form h2 {
+	margin-top: 0 !important;
+	margin-bottom: 30px !important;
+	color: #1A202C !important;
+	font-size: 32px !important;
+	font-weight: 800 !important;
+	letter-spacing: -1px !important;
+}
+
+.ocb-form h3 {
+	margin-top: 30px !important;
+	margin-bottom: 20px !important;
+	color: #ffffff !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	background: linear-gradient(135deg, #C62828 0%, #B71C1C 100%) !important;
+	padding: 15px 20px !important;
+	border-radius: 10px !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 10px !important;
+}
+
+/* Form Grid */
+.ocb-form-row {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	gap: 25px !important;
+	margin-bottom: 25px !important;
+}
+
+.ocb-form-group label {
+	display: block !important;
+	margin-bottom: 10px !important;
+	font-weight: 600 !important;
+	color: #ffffff !important;
+	font-size: 14px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px !important;
+}
+
+.ocb-form-group input,
+.ocb-form-group textarea,
+.ocb-form-group select {
+	width: 100% !important;
+	padding: 14px 18px !important;
+	border: 2px solid #EDF2F7 !important;
+	border-radius: 12px !important;
+	font-size: 15px !important;
+	background-color: #F8FAFC !important;
+	transition: all 0.2s ease !important;
+}
+
+.ocb-form-group input:focus {
+	border-color: #C62828 !important;
+	background-color: #ffffff !important;
+	box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.08) !important;
+}
+
+/* Service & Vehicle Cards */
+.ocb-card {
+	border: 2px solid #EDF2F7 !important;
+	border-radius: 16px !important;
+	padding: 25px !important;
+	background: #ffffff !important;
+	transition: all 0.3s ease !important;
+	text-align: center !important;
+	position: relative !important;
+	overflow: hidden !important;
+}
+
+.ocb-card:hover {
+	border-color: #C62828 !important;
+	transform: translateY(-5px) !important;
+	box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+}
+
+.ocb-card.ocb-card-selected {
+	border-color: #C62828 !important;
+	background-color: #FFF5F5 !important;
+	box-shadow: 0 10px 30px rgba(198, 40, 40, 0.1) !important;
+}
+
+.ocb-card-title {
+	font-weight: 800 !important;
+	color: #1A202C !important;
+	font-size: 18px !important;
+	margin-bottom: 5px !important;
+}
+
+.ocb-card-price {
+	font-size: 24px !important;
+	color: #C62828 !important;
+	font-weight: 900 !important;
+	margin: 15px 0 !important;
+}
+
+/* Button Modernization */
+.ocb-next, .ocb-prev, .ocb-submit {
+	padding: 16px 40px !important;
+	border-radius: 50px !important;
+	font-weight: 800 !important;
+	font-size: 16px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1px !important;
+	cursor: pointer !important;
+	transition: all 0.3s !important;
+	border: none !important;
+}
+
+.ocb-next, .ocb-submit {
+	background: linear-gradient(135deg, #C62828 0%, #B71C1C 100%) !important;
+	color: white !important;
+	box-shadow: 0 10px 20px rgba(198, 40, 40, 0.2) !important;
+}
+
+.ocb-next:hover, .ocb-submit:hover {
+	transform: translateY(-3px) !important;
+	box-shadow: 0 15px 30px rgba(198, 40, 40, 0.3) !important;
+}
+
+.ocb-card-meta {
+	font-size: 12px;
+	color: #999;
+	margin-top: 8px;
+}
+
+/* Price Display */
+.ocb-price-display {
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	padding: 20px;
+	margin: 30px 0;
+	border: 1px solid #f0f0f0;
+}
+
+.ocb-price-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	font-size: 14px;
+	color: #555;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.ocb-price-item:last-child {
+	border-bottom: none;
+}
+
+.ocb-price-item strong {
+	font-size: 16px;
+	color: #333;
+}
+
+.ocb-price-item.ocb-total {
+	background-color: #f5f5f5;
+	padding: 15px;
+	margin: 10px -20px -20px -20px;
+	border-radius: 0 0 8px 8px;
+	font-weight: 600;
+	font-size: 16px;
+	color: #333;
+}
+
+.ocb-price-item.ocb-total strong {
+	font-size: 20px;
+	color: #e74c3c;
+}
+
+/* Review Section */
+.ocb-section {
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	border: 1px solid #f0f0f0;
+}
+
+.ocb-summary-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 15px;
+	margin: 15px 0;
+}
+
+.ocb-summary-item {
+	display: flex;
+	flex-direction: column;
+	padding: 12px;
+	background: white;
+	border-radius: 4px;
+	border: 1px solid #e0e0e0;
+}
+
+.ocb-label {
+	font-weight: 600;
+	color: #666;
+	font-size: 12px;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+}
+
+.ocb-value {
+	color: #333;
+	font-size: 14px;
+	word-break: break-word;
+}
+
+/* Price Breakdown */
+.ocb-breakdown-items {
+	background: white;
+	border-radius: 4px;
+	border: 1px solid #e0e0e0;
+	overflow: hidden;
+}
+
+.ocb-breakdown-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	border-bottom: 1px solid #f0f0f0;
+	font-size: 14px;
+	color: #555;
+}
+
+.ocb-breakdown-item:last-child {
+	border-bottom: none;
+}
+
+.ocb-breakdown-item strong {
+	font-weight: 600;
+	color: #333;
+	font-size: 15px;
+}
+
+.ocb-breakdown-item.ocb-total-item {
+	background-color: #f5f5f5;
+	font-weight: 600;
+	font-size: 15px;
+	color: #333;
+}
+
+.ocb-breakdown-item.ocb-total-item strong {
+	font-size: 18px;
+	color: #e74c3c;
+}
+
+.ocb-discount-negative {
+	color: #27ae60 !important;
+}
+
+/* Promo Code */
+.ocb-promo-section {
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid #f0f0f0;
+}
+
+.ocb-promo-input {
+	display: flex;
+	gap: 10px;
+	margin: 15px 0;
+}
+
+.ocb-promo-input input {
+	flex: 1;
+	padding: 12px 14px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.ocb-promo-input .ocb-btn {
+	min-width: 120px;
+}
+
+#ocb-promo-message {
+	margin-top: 10px;
+	font-size: 13px;
+	padding: 10px;
+	border-radius: 4px;
+	display: none;
+}
+
+#ocb-promo-message.success {
+	display: block;
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+#ocb-promo-message.error {
+	display: block;
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+/* Terms */
+.ocb-terms-section {
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid #f0f0f0;
+}
+
+.ocb-checkbox-label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	font-size: 14px;
+	color: #555;
+	user-select: none;
+}
+
+.ocb-checkbox-label input[type="checkbox"] {
+	width: auto;
+	margin-right: 10px;
+	cursor: pointer;
+	min-width: 20px;
+}
+
+.ocb-checkbox-label a {
+	color: #e74c3c;
+	text-decoration: none;
+}
+
+.ocb-checkbox-label a:hover {
+	text-decoration: underline;
+}
+
+/* Buttons */
+.ocb-form-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 30px;
+	padding-top: 20px;
+	border-top: 1px solid #e0e0e0;
+	flex-wrap: wrap;
+}
+
+.ocb-form-actions .ocb-btn-back {
+	margin-right: auto;
+}
+
+.ocb-form-actions .ocb-btn-primary {
+	margin-left: auto;
+}
+
+.ocb-btn {
+	padding: 12px 30px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase;
+}
+
+.ocb-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.ocb-btn-primary {
+	background-color: #C62828;
+	color: white;
+}
+
+.ocb-btn-primary:hover:not(:disabled) {
+	background-color: #B71C1C;
+	box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+	transform: translateY(-2px);
+}
+
+.ocb-btn-secondary {
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #ddd;
+}
+
+.ocb-btn-secondary:hover:not(:disabled) {
+	background-color: #e0e0e0;
+}
+
+.ocb-btn-success {
+	background-color: #27ae60;
+	color: white;
+	font-size: 16px;
+	padding: 15px 40px;
+}
+
+.ocb-btn-success:hover:not(:disabled) {
+	background-color: #229954;
+	box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.ocb-search-quote {
+	width: 100%;
+	padding: 15px;
+	font-size: 16px;
+}
+
+.ocb-apply-promo {
+	min-width: 120px;
+}
+
+/* Results Container */
+.ocb-results {
+	background: white;
+	padding: 30px;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ocb-quote-summary {
+	background: #f0f8ff;
+	padding: 15px;
+	border-left: 4px solid #e74c3c;
+	margin-bottom: 25px;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #555;
+}
+
+/* Loading */
+.ocb-loading {
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+	padding: 20px;
+}
+
+/* Error/Success Messages */
+.ocb-message {
+	padding: 15px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.ocb-message.error {
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.ocb-message.success {
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+	.ocb-booking-container {
+		padding: 10px;
+		margin: 20px auto;
+	}
+
+	.ocb-form {
+		padding: 20px;
+	}
+
+	.ocb-steps {
+		margin-bottom: 30px;
+	}
+
+	.ocb-step-number {
+		width: 40px;
+		height: 40px;
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
+
+	.ocb-step-label {
+		font-size: 11px;
+		width: 80px;
+	}
+
+	.ocb-steps::before {
+		top: 20px;
+	}
+
+	.ocb-form-actions {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.ocb-form-actions .ocb-btn {
+		width: 100%;
+		margin: 0 !important;
+		padding: 14px 20px;
+		font-size: 15px;
+	}
+	
+	.ocb-form-actions .ocb-btn-back {
+		order: 2;
+	}
+	
+	.ocb-form-actions .ocb-btn-primary {
+		order: 1;
+	}
+
+	.ocb-service-cards,
+	.ocb-vehicle-cards {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-summary-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.ocb-address-inline {
+	font-size: 14px !important;
+	color: #333 !important;
+	line-height: 1.5 !important;
+	display: block !important;
+} 
+ 
+ 

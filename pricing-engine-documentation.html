@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OnRoute Pricing Engine - Database-Driven Configuration</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
+        background: #f5f5f5;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .section {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .section h2 {
+        color: #0066cc;
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+      .subsection {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        border-left: 4px solid #0066cc;
+      }
+      .code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin: 10px 0;
+        font-family: "Courier New", monospace;
+        font-size: 0.9em;
+      }
+      .code-block .keyword {
+        color: #569cd6;
+      }
+      .code-block .string {
+        color: #ce9178;
+      }
+      .code-block .number {
+        color: #b5cea8;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+      th {
+        background: #0066cc;
+        color: white;
+        padding: 12px;
+        text-align: left;
+      }
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+      }
+      tr:hover {
+        background: #f5f5f5;
+      }
+      .success {
+        background: #d4edda;
+        border-left: 4px solid #28a745;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .warning {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .info {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .flow-diagram {
+        background: white;
+        border: 2px solid #0066cc;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+      }
+      .flow-step {
+        background: #f0f8ff;
+        border: 1px solid #0066cc;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .step-number {
+        background: #0066cc;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      .arrow {
+        text-align: center;
+        color: #0066cc;
+        font-size: 1.5em;
+        margin: 5px 0;
+      }
+      .comparison-table {
+        margin: 20px 0;
+      }
+      .test-case {
+        background: white;
+        border: 2px solid #0066cc;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      .test-header {
+        background: #0066cc;
+        color: white;
+        padding: 10px;
+        border-radius: 4px 4px 0 0;
+        margin: -15px -15px 15px -15px;
+      }
+      .formula {
+        background: #f0f8ff;
+        border-left: 4px solid #0066cc;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+        font-family: monospace;
+        line-height: 1.6;
+      }
+      .setting {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 20px;
+        margin: 10px 0;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+      .setting-label {
+        font-weight: 600;
+        color: #333;
+      }
+      .setting-source {
+        color: #666;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🗄️ OnRoute Pricing Engine - Database-Driven Configuration</h1>
+
+      <div class="section">
+        <h2>✅ Yes - Settings Come From Dashboard/Database</h2>
+        <p>
+          All pricing parameters are stored in WordPress database and controlled
+          from the admin dashboard.
+        </p>
+
+        <div class="subsection">
+          <h3 style="color: #0066cc; margin-bottom: 10px">
+            📋 Vehicle Settings (Database-Controlled)
+          </h3>
+          <div class="setting">
+            <div class="setting-label">Source:</div>
+            <div>
+              <code>get_option('ocb_vehicles', array())</code> - Plugin Settings
+              → Vehicles<br /><span class="setting-source"
+                >Defined in class-pricing.php lines 38-73</span
+              >
+            </div>
+          </div>
+          <div class="setting">
+            <div class="setting-label">Settings per Vehicle:</div>
+            <div>
+              • <strong>vehicle_id</strong> (small_van, mwb, lwb)<br />
+              • <strong>name</strong> (display name)<br />
+              • <strong>rate_per_mile</strong> (£ per mile)<br />
+              • <strong>admin_fee</strong> (flat charge)<br />
+              • <strong>min_charge</strong> (minimum booking)<br />
+              • <strong>active</strong> (true/false)
+            </div>
+          </div>
+          <table style="margin-top: 15px">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>Rate/Mile</th>
+                <th>Admin Fee</th>
+                <th>Min Charge</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Small Van</td>
+                <td>£1.35</td>
+                <td>£15.00</td>
+                <td>£45.00</td>
+                <td>ocb_vehicles database option</td>
+              </tr>
+              <tr>
+                <td>Medium Van</td>
+                <td>£1.55</td>
+                <td>£20.00</td>
+                <td>£55.00</td>
+                <td>ocb_vehicles database option</td>
+              </tr>
+              <tr>
+                <td>Large Van</td>
+                <td>£1.75</td>
+                <td>£25.00</td>
+                <td>£65.00</td>
+                <td>ocb_vehicles database option</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection">
+          <h3 style="color: #0066cc; margin-bottom: 10px">
+            🎯 Service Settings (Database-Controlled)
+          </h3>
+          <div class="setting">
+            <div class="setting-label">Source:</div>
+            <div>
+              <code>get_option('ocb_services', array())</code> - Plugin Settings
+              → Services<br /><span class="setting-source"
+                >Defined in class-pricing.php lines 22-29</span
+              >
+            </div>
+          </div>
+          <table style="margin-top: 15px">
+            <thead>
+              <tr>
+                <th>Service Name</th>
+                <th>Service ID</th>
+                <th>Multiplier</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Same Day</td>
+                <td>same_day</td>
+                <td>1.0x</td>
+                <td>ocb_services database option</td>
+              </tr>
+              <tr>
+                <td>Priority</td>
+                <td>priority</td>
+                <td>1.5x</td>
+                <td>ocb_services database option</td>
+              </tr>
+              <tr>
+                <td>Direct</td>
+                <td>direct</td>
+                <td>2.0x</td>
+                <td>ocb_services database option</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection">
+          <h3 style="color: #0066cc; margin-bottom: 10px">
+            🌙 Night Rate Settings (Database-Controlled)
+          </h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Setting</th>
+                <th>Value</th>
+                <th>Database Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Night Rate Enabled</td>
+                <td>Yes (checked)</td>
+                <td>ocb_night_enabled = 1</td>
+              </tr>
+              <tr>
+                <td>Night Start Time</td>
+                <td>22:00 (10 PM)</td>
+                <td>ocb_night_start = 22</td>
+              </tr>
+              <tr>
+                <td>Night End Time</td>
+                <td>06:00 (6 AM)</td>
+                <td>ocb_night_end = 6</td>
+              </tr>
+              <tr>
+                <td>Night Multiplier</td>
+                <td>2.0x (double)</td>
+                <td>ocb_night_multiplier = 2.0</td>
+              </tr>
+              <tr>
+                <td>Apply Night Rate For</td>
+                <td>Collection OR Delivery</td>
+                <td>ocb_night_apply_mode = 'either'</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PRICING FORMULA SECTION -->
+      <div class="section">
+        <h2>📐 Actual Pricing Formula (From PHP Code)</h2>
+
+        <div class="info">
+          <h3 style="color: #0066cc">
+            Complete Calculation Flow (class-pricing.php)
+          </h3>
+        </div>
+
+        <div class="formula">
+          <strong>Step 1:</strong> Check if collection OR delivery time is in
+          night window (22:00-06:00) → night_applied = true/false
+
+          <strong>Step 2:</strong> Set per-mile rate with night multiplier if
+          (night_applied) { rate_per_mile = base_rate_per_mile × 2.0 } else {
+          rate_per_mile = base_rate_per_mile }
+
+          <strong>Step 3:</strong> Calculate distance cost distance_cost =
+          distance_miles × rate_per_mile
+
+          <strong>Step 4:</strong> Apply minimum charge (take higher value)
+          chargeable_cost = max(distance_cost, min_charge)
+
+          <strong>Step 5:</strong> Apply service multiplier chargeable_cost =
+          chargeable_cost × service_multiplier (1.0x for Same Day, 1.5x for
+          Priority, 2.0x for Direct)
+
+          <strong>Step 6:</strong> Add admin fee (NEVER multiplied) final_price
+          = chargeable_cost + admin_fee
+
+          <strong>Calculate Night Surcharge (for display):</strong>
+          Calculate base_price without night night_surcharge = final_price -
+          base_price
+        </div>
+
+        <div class="warning">
+          <h3 style="color: #856404; margin-bottom: 10px">⚠️ Critical Rules</h3>
+          <ul style="list-style: none; padding: 0">
+            <li>
+              ✓ <strong>Night multiplier</strong> applies to rate BEFORE
+              distance calculation
+            </li>
+            <li>
+              ✓ <strong>Minimum charge</strong> applies AFTER distance
+              calculation
+            </li>
+            <li>
+              ✓ <strong>Service multiplier</strong> applies AFTER minimum charge
+              enforcement
+            </li>
+            <li>
+              ✓ <strong>Admin fee</strong> is added LAST and is NEVER multiplied
+            </li>
+            <li>
+              ✓ <strong>Night surcharge display</strong> = final_price -
+              base_price
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CORRECTED TEST CASES -->
+      <div class="section">
+        <h2>✅ Corrected Test Cases (Matches PHP Engine)</h2>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 1: Small Van + Same Day + 170 miles + DAY
+          </div>
+          <div class="formula">
+            Step 1: Not night (assuming collection 10:00) Step 2: rate =
+            £1.35/mile (no night multiplier) Step 3: distance_cost = 170 × £1.35
+            = £229.50 Step 4: chargeable_cost = max(£229.50, £45.00) = £229.50
+            Step 5: chargeable_cost = £229.50 × 1.0 (Same Day) = £229.50 Step 6:
+            final_price = £229.50 + £15.00 (admin) = <strong>£244.50</strong>
+          </div>
+        </div>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 2: Small Van + Same Day + 170 miles + NIGHT
+          </div>
+          <div class="formula">
+            Step 1: Night (delivery 23:00) Step 2: rate = £1.35 × 2.0 =
+            £2.70/mile Step 3: distance_cost = 170 × £2.70 = £459.00 Step 4:
+            chargeable_cost = max(£459.00, £45.00) = £459.00 Step 5:
+            chargeable_cost = £459.00 × 1.0 (Same Day) = £459.00 Step 6:
+            final_price = £459.00 + £15.00 = <strong>£474.00</strong>
+
+            Night Surcharge = £474.00 - £244.50 = £229.50
+          </div>
+        </div>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 3: Large Van + Direct + 170 miles + DAY
+          </div>
+          <div class="formula">
+            Step 1: Not night (collection 08:00) Step 2: rate = £1.75/mile (no
+            night multiplier) Step 3: distance_cost = 170 × £1.75 = £297.50 Step
+            4: chargeable_cost = max(£297.50, £65.00) = £297.50 Step 5:
+            chargeable_cost = £297.50 × 2.0 (Direct) = £595.00 Step 6:
+            final_price = £595.00 + £25.00 (admin) = <strong>£620.00</strong>
+          </div>
+        </div>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 4: Large Van + Direct + 170 miles + NIGHT
+          </div>
+          <div class="formula">
+            Step 1: Night (delivery 02:30) Step 2: rate = £1.75 × 2.0 =
+            £3.50/mile Step 3: distance_cost = 170 × £3.50 = £595.00 Step 4:
+            chargeable_cost = max(£595.00, £65.00) = £595.00 Step 5:
+            chargeable_cost = £595.00 × 2.0 (Direct) = £1,190.00 Step 6:
+            final_price = £1,190.00 + £25.00 = <strong>£1,215.00</strong>
+
+            Night Surcharge = £1,215.00 - £620.00 = £595.00
+          </div>
+        </div>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 5: Medium Van + Priority + 80 miles + DAY
+          </div>
+          <div class="formula">
+            Step 1: Not night (collection 14:00) Step 2: rate = £1.55/mile Step
+            3: distance_cost = 80 × £1.55 = £124.00 Step 4: chargeable_cost =
+            max(£124.00, £55.00) = £124.00 Step 5: chargeable_cost = £124.00 ×
+            1.5 (Priority) = £186.00 Step 6: final_price = £186.00 + £20.00
+            (admin) = <strong>£206.00</strong>
+          </div>
+        </div>
+
+        <div class="test-case">
+          <div class="test-header">
+            Test 6: Small Van + Same Day + 20 miles + DAY (Below Min Charge)
+          </div>
+          <div class="formula">
+            Step 1: Not night Step 2: rate = £1.35/mile Step 3: distance_cost =
+            20 × £1.35 = £27.00 Step 4: chargeable_cost = max(£27.00, £45.00) =
+            £45.00 ← MIN CHARGE APPLIES! Step 5: chargeable_cost = £45.00 × 1.0
+            (Same Day) = £45.00 Step 6: final_price = £45.00 + £15.00 (admin) =
+            <strong>£60.00</strong>
+
+            Note: Min charge of £45 is enforced before service multiplier
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA FLOW DIAGRAM -->
+      <div class="section">
+        <h2>🔄 Data Flow: Database → Pricing Engine → Front-End</h2>
+
+        <div class="flow-diagram">
+          <div class="flow-step">
+            <span class="step-number">1</span>
+            <strong>Admin Dashboard Settings</strong><br />
+            User sets vehicles, rates, services, multipliers in WordPress admin
+          </div>
+          <div class="arrow">↓</div>
+
+          <div class="flow-step">
+            <span class="step-number">2</span>
+            <strong>WordPress Database (options table)</strong><br />
+            Settings stored as: ocb_vehicles, ocb_services, ocb_night_*, etc.
+          </div>
+          <div class="arrow">↓</div>
+
+          <div class="flow-step">
+            <span class="step-number">3</span>
+            <strong>PHP Backend (class-pricing.php)</strong><br />
+            Load settings: get_option('ocb_vehicles'),
+            get_option('ocb_services'), etc.
+          </div>
+          <div class="arrow">↓</div>
+
+          <div class="flow-step">
+            <span class="step-number">4</span>
+            <strong>Pricing Calculation Function</strong><br />
+            calculate_price() uses loaded settings to compute final price
+          </div>
+          <div class="arrow">↓</div>
+
+          <div class="flow-step">
+            <span class="step-number">5</span>
+            <strong>AJAX Response (JSON)</strong><br />
+            Send pricing breakdown to front-end with all details
+          </div>
+          <div class="arrow">↓</div>
+
+          <div class="flow-step">
+            <span class="step-number">6</span>
+            <strong>JavaScript Front-End (multi-step-clean.js)</strong><br />
+            Display prices to user and update Review page
+          </div>
+        </div>
+      </div>
+
+      <!-- AJAX ENDPOINTS -->
+      <div class="section">
+        <h2>🔗 Key AJAX Endpoints (class-loader.php)</h2>
+
+        <div class="subsection">
+          <h3>ocb_quote_search</h3>
+          <p><strong>Location:</strong> class-loader.php lines 150-240</p>
+          <p>
+            <strong>Purpose:</strong> Get all vehicle quotes for postcodes on
+            initial form load
+          </p>
+          <div class="code-block">
+            POST /wp-admin/admin-ajax.php?action=ocb_quote_search Inputs: -
+            pickup_code: "SW1A 1AA" - delivery_code: "M1 1AE" - nonce: security
+            token Returns: - distance: 170 - quotes: { "same_day": [...],
+            "priority": [...], "direct": [...] } - Each vehicle shows:
+            vehicle_id, name, price, night_price
+          </div>
+          <p style="margin-top: 10px">
+            <strong>Uses:</strong> get_vehicles(), get_services() from database
+          </p>
+        </div>
+
+        <div class="subsection">
+          <h3>ocb_calculate_price</h3>
+          <p><strong>Location:</strong> class-loader.php lines 269-315</p>
+          <p>
+            <strong>Purpose:</strong> Recalculate final price with delivery time
+            (for Review & Book page)
+          </p>
+          <div class="code-block">
+            POST /wp-admin/admin-ajax.php?action=ocb_calculate_price Inputs: -
+            vehicle_id: "lwb" - service_id: "direct" - pickup_code: "SW1A 1AA" -
+            delivery_code: "M1 1AE" - collection_time: "08:00" - delivery_time:
+            "23:45" Returns: - breakdown: { distance_miles, rate_per_mile,
+            distance_cost, min_charge, admin_fee, chargeable_cost,
+            service_multiplier, base_price, night_applied,
+            night_multiplier_value, night_surcharge, final_price }
+          </div>
+          <p style="margin-top: 10px">
+            <strong>Uses:</strong> get_pricing_breakdown() which calls
+            calculate_price() with return_breakdown=true
+          </p>
+        </div>
+      </div>
+
+      <!-- VERIFICATION CHECKLIST -->
+      <div class="section">
+        <h2>✅ Verification Checklist</h2>
+
+        <div class="success">
+          <h3 style="color: #155724; margin-bottom: 10px">
+            Your System Configuration
+          </h3>
+          <ul style="list-style: none; padding: 0; color: #155724">
+            <li>
+              ☑ All vehicle settings (rates, fees, mins) are pulled from
+              database at runtime
+            </li>
+            <li>
+              ☑ All service multipliers are pulled from database at runtime
+            </li>
+            <li>
+              ☑ All night rate settings are pulled from database at runtime
+            </li>
+            <li>
+              ☑ Pricing engine is NOT hardcoded - everything is database-driven
+            </li>
+            <li>
+              ☑ Frontend JavaScript displays prices returned by backend AJAX
+            </li>
+            <li>
+              ☑ You can change any setting in admin dashboard and prices will
+              update
+            </li>
+          </ul>
+        </div>
+
+        <div class="info">
+          <h3 style="color: #0066cc; margin-bottom: 10px">
+            Test Case Accuracy
+          </h3>
+          <ul style="list-style: none; padding: 0">
+            <li>◻ Test cases now match actual PHP pricing formula</li>
+            <li>◻ Night multiplier is applied to RATE, not final price</li>
+            <li>◻ Service multiplier applied AFTER min charge enforcement</li>
+            <li>◻ Admin fee never multiplied, always added last</li>
+            <li>◻ Min charge prevents undercharging for short distances</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HOW TO TEST -->
+      <div class="section">
+        <h2>🧪 How to Test Your Pricing Engine</h2>
+
+        <div class="subsection">
+          <h3>Step 1: Verify Database Settings</h3>
+          <ol>
+            <li>Go to WordPress Admin Dashboard</li>
+            <li>Navigate to OnRoute Settings</li>
+            <li>Check Vehicles, Services, Night Rate Settings</li>
+            <li>Confirm settings match your requirements</li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3>Step 2: Test via Frontend Form</h3>
+          <ol>
+            <li>Open booking form on front-end</li>
+            <li>Enter postcodes: SW1A 1AA → M1 1AE (or another route)</li>
+            <li>Select vehicle (e.g., Large Van)</li>
+            <li>Select service (e.g., Direct)</li>
+            <li>Check displayed price against expected calculation</li>
+            <li>Go to Review & Book step</li>
+            <li>
+              Select delivery time at 23:45 (night) to see night surcharge
+            </li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3>Step 3: Test via Browser DevTools</h3>
+          <ol>
+            <li>Open browser DevTools (F12) → Network tab</li>
+            <li>Select postcodes and watch AJAX call: ocb_quote_search</li>
+            <li>View the response to see all prices</li>
+            <li>Click Review to trigger ocb_calculate_price</li>
+            <li>Verify response breakdown shows correct surcharge</li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3>Step 4: Change Settings & Retest</h3>
+          <ol>
+            <li>Go to admin dashboard</li>
+            <li>Change a vehicle rate (e.g., Small Van to £1.40/mile)</li>
+            <li>Save settings</li>
+            <li>Refresh frontend form</li>
+            <li>Verify price reflects new rate immediately</li>
+            <li>This confirms database-driven pricing works!</li>
+          </ol>
+        </div>
+      </div>
+
+      <div
+        class="section"
+        style="background: #f0f8ff; border-left: 4px solid #0066cc"
+      >
+        <h2 style="color: #0066cc">🎯 Summary</h2>
+        <p><strong>Your pricing system is 100% database-driven:</strong></p>
+        <ul>
+          <li>✓ Settings stored in WordPress options table</li>
+          <li>✓ Admin dashboard controls all pricing parameters</li>
+          <li>✓ Frontend loads settings at runtime via AJAX</li>
+          <li>✓ Pricing engine uses loaded settings for calculations</li>
+          <li>✓ No hardcoded values (except defaults for fallback)</li>
+        </ul>
+        <p style="margin-top: 15px">
+          <strong
+            >Test cases have been corrected to match the actual PHP pricing
+            formula.</strong
+          >
+          Use the corrected test cases to validate your implementation.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

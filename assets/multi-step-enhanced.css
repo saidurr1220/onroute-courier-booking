@@ -1,0 +1,1298 @@
+/**
+ * Multi-Step Booking Form - Enhanced Styles
+ * Beautiful, modern, user-friendly design with icons and animations
+ */
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+
+:root {
+	--ocb-primary: #667eea;
+	--ocb-primary-dark: #5a67d8;
+	--ocb-secondary: #764ba2;
+	--ocb-success: #48bb78;
+	--ocb-danger: #f56565;
+	--ocb-warning: #ed8936;
+	--ocb-info: #4299e1;
+	--ocb-light-bg: #f7fafc;
+	--ocb-border: #e2e8f0;
+	--ocb-text: #2d3748;
+	--ocb-text-light: #718096;
+	--ocb-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+	--ocb-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+	--ocb-radius: 12px;
+	--ocb-radius-lg: 16px;
+	--ocb-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+
+.ocb-multi-step-container {
+	max-width: 900px;
+	margin: 40px auto;
+	padding: 20px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ========================================
+   LOTTIE ANIMATION HEADER
+   ======================================== */
+
+.ocb-lottie-header {
+	width: 250px;
+	height: 180px;
+	margin: 0 auto 30px;
+	position: relative;
+}
+
+/* ========================================
+   PROGRESS INDICATOR
+   ======================================== */
+
+.ocb-multi-step-indicator {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 50px;
+	padding: 30px;
+	background: #ffffff;
+	border-radius: var(--ocb-radius-lg);
+	box-shadow: var(--ocb-shadow-lg);
+	position: relative;
+	overflow-x: auto;
+}
+
+.ocb-multi-step-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	position: relative;
+	z-index: 2;
+	flex: 1;
+	min-width: 100px;
+}
+
+.ocb-step-icon {
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--ocb-light-bg);
+	color: var(--ocb-text-light);
+	font-size: 20px;
+	transition: var(--ocb-transition);
+	border: 3px solid var(--ocb-border);
+}
+
+.ocb-step-number {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	width: 24px;
+	height: 24px;
+	background: var(--ocb-border);
+	color: #ffffff;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: 700;
+	transition: var(--ocb-transition);
+}
+
+.ocb-step-label {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ocb-text-light);
+	text-align: center;
+	transition: var(--ocb-transition);
+}
+
+.ocb-multi-step-active .ocb-step-icon {
+	background: linear-gradient(135deg, var(--ocb-primary), var(--ocb-secondary));
+	color: #ffffff;
+	border-color: var(--ocb-primary);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+	transform: scale(1.1);
+}
+
+.ocb-multi-step-active .ocb-step-number {
+	background: var(--ocb-success);
+}
+
+.ocb-multi-step-active .ocb-step-label {
+	color: var(--ocb-primary);
+	font-weight: 700;
+}
+
+.ocb-multi-step-completed .ocb-step-icon {
+	background: var(--ocb-success);
+	border-color: var(--ocb-success);
+	color: #ffffff;
+}
+
+.ocb-multi-step-completed .ocb-step-number {
+	background: var(--ocb-success);
+}
+
+.ocb-multi-step-completed .ocb-step-label {
+	color: var(--ocb-success);
+}
+
+.ocb-step-connector {
+	flex: 1;
+	height: 3px;
+	background: var(--ocb-border);
+	position: relative;
+	margin: 0 -10px;
+	margin-top: -30px;
+	z-index: 1;
+}
+
+.ocb-multi-step-completed + .ocb-step-connector {
+	background: var(--ocb-success);
+}
+
+/* ========================================
+   FORM CONTAINER
+   ======================================== */
+
+.ocb-multi-form {
+	background: #ffffff;
+	border-radius: var(--ocb-radius-lg);
+	box-shadow: var(--ocb-shadow-lg);
+	padding: 40px;
+	position: relative;
+}
+
+.ocb-multi-step-content {
+	animation: ocb-fadeIn 0.5s ease-out;
+}
+
+@keyframes ocb-fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ========================================
+   STEP HEADERS
+   ======================================== */
+
+.ocb-step-header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.ocb-step-header h2 {
+	font-size: 28px;
+	font-weight: 800;
+	color: var(--ocb-text);
+	margin: 0 0 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+
+.ocb-step-header h2 i {
+	font-size: 32px;
+}
+
+.ocb-subtitle {
+	font-size: 16px;
+	color: var(--ocb-text-light);
+	margin: 0;
+}
+
+.ocb-subtitle strong {
+	color: var(--ocb-primary);
+	font-weight: 700;
+}
+
+/* ========================================
+   FORM SECTIONS
+   ======================================== */
+
+.ocb-form-section {
+	margin-bottom: 35px;
+}
+
+.ocb-form-section h3 {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin: 0 0 20px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-bottom: 12px;
+	border-bottom: 2px solid var(--ocb-border);
+}
+
+.ocb-form-section h3 i {
+	color: var(--ocb-primary);
+}
+
+.ocb-highlight-section {
+	background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+	padding: 30px;
+	border-radius: var(--ocb-radius);
+	border: 2px solid var(--ocb-primary);
+	box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* ========================================
+   FORM FIELDS
+   ======================================== */
+
+.ocb-form-group {
+	margin-bottom: 20px;
+}
+
+.ocb-form-group label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	color: #ffffff;
+	margin-bottom: 8px;
+}
+
+.ocb-form-group label i {
+	margin-right: 6px;
+	color: var(--ocb-primary);
+}
+
+.ocb-field {
+	width: 100%;
+	padding: 14px 16px;
+	border: 2px solid var(--ocb-border);
+	border-radius: var(--ocb-radius);
+	font-size: 15px;
+	font-family: inherit;
+	transition: var(--ocb-transition);
+	box-sizing: border-box;
+}
+
+.ocb-field:focus {
+	outline: none;
+	border-color: var(--ocb-primary);
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.ocb-field:disabled {
+	background: var(--ocb-light-bg);
+	cursor: not-allowed;
+}
+
+.ocb-large-input {
+	font-size: 18px;
+	padding: 18px 20px;
+	font-weight: 600;
+}
+
+.ocb-help-text {
+	display: block;
+	font-size: 12px;
+	color: var(--ocb-text-light);
+	margin-top: 6px;
+}
+
+/* Form Rows & Columns */
+.ocb-form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.ocb-form-col {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Input with Button */
+.ocb-input-with-button {
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+}
+
+.ocb-input-with-button .ocb-field {
+	flex: 1;
+}
+
+.ocb-btn-icon {
+	padding: 14px 20px;
+	background: var(--ocb-primary);
+	color: #ffffff;
+	border: none;
+	border-radius: var(--ocb-radius);
+	font-size: 14px;
+	font-weight: 600;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ocb-btn-icon:hover {
+	background: var(--ocb-primary-dark);
+	transform: translateY(-2px);
+	box-shadow: var(--ocb-shadow);
+}
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+
+.ocb-divider {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	margin: 25px 0;
+	color: var(--ocb-text-light);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.ocb-divider::before,
+.ocb-divider::after {
+	content: '';
+	flex: 1;
+	border-bottom: 2px solid var(--ocb-border);
+}
+
+.ocb-divider span {
+	padding: 0 15px;
+}
+
+/* ========================================
+   INFO BOX
+   ======================================== */
+
+.ocb-info-box {
+	display: flex;
+	align-items: flex-start;
+	gap: 15px;
+	padding: 18px 20px;
+	background: #ebf8ff;
+	border-left: 4px solid var(--ocb-info);
+	border-radius: var(--ocb-radius);
+	margin-top: 25px;
+}
+
+.ocb-info-box i {
+	font-size: 24px;
+	color: var(--ocb-info);
+	flex-shrink: 0;
+}
+
+.ocb-info-box strong {
+	display: block;
+	color: var(--ocb-text);
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+.ocb-info-box p {
+	color: var(--ocb-text-light);
+	font-size: 14px;
+	margin: 0;
+}
+
+.ocb-info-tip {
+	background: #fffaf0;
+	border-left-color: var(--ocb-warning);
+}
+
+.ocb-info-tip i {
+	color: var(--ocb-warning);
+}
+
+/* ========================================
+   QUOTE CARD
+   ======================================== */
+
+.ocb-quote-card {
+	background: linear-gradient(135deg, var(--ocb-primary), var(--ocb-secondary));
+	color: #ffffff;
+	padding: 25px;
+	border-radius: var(--ocb-radius-lg);
+	margin-bottom: 35px;
+	box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.ocb-quote-timer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+	margin-bottom: 15px;
+	opacity: 0.95;
+}
+
+.ocb-quote-timer i {
+	font-size: 18px;
+}
+
+.ocb-route-display {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.ocb-route-point {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 1;
+}
+
+.ocb-route-point i {
+	font-size: 28px;
+}
+
+.ocb-route-label {
+	display: block;
+	font-size: 12px;
+	opacity: 0.8;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.ocb-route-value {
+	display: block;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.ocb-route-arrow {
+	font-size: 24px;
+	opacity: 0.6;
+}
+
+/* ========================================
+   SERVICE TYPE SECTION
+   ======================================== */
+
+.ocb-service-type-section {
+	margin-bottom: 40px;
+}
+
+.ocb-service-type-section h3 {
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ocb-service-selector {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 15px;
+}
+
+.ocb-service-card {
+	display: block;
+	cursor: pointer;
+	position: relative;
+}
+
+.ocb-service-card input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.ocb-service-card-content {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 18px;
+	background: #ffffff;
+	border: 3px solid var(--ocb-border);
+	border-radius: var(--ocb-radius);
+	transition: var(--ocb-transition);
+}
+
+.ocb-service-card-content i {
+	font-size: 28px;
+	flex-shrink: 0;
+}
+
+.ocb-service-title {
+	display: block;
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin-bottom: 3px;
+}
+
+.ocb-service-desc {
+	display: block;
+	font-size: 12px;
+	color: var(--ocb-text-light);
+}
+
+.ocb-service-card:hover .ocb-service-card-content {
+	border-color: var(--ocb-primary);
+	box-shadow: var(--ocb-shadow);
+	transform: translateY(-2px);
+}
+
+.ocb-service-active .ocb-service-card-content {
+	background: linear-gradient(135deg, var(--ocb-primary), var(--ocb-secondary));
+	border-color: var(--ocb-primary);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+	transform: scale(1.05);
+}
+
+.ocb-service-active .ocb-service-title,
+.ocb-service-active .ocb-service-desc {
+	color: #ffffff;
+}
+
+/* ========================================
+   VEHICLES SECTION
+   ======================================== */
+
+.ocb-vehicles-section h3 {
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ocb-vehicles-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+}
+
+.ocb-vehicle-card {
+	background: #ffffff;
+	border: 3px solid var(--ocb-border);
+	border-radius: var(--ocb-radius-lg);
+	padding: 25px;
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	position: relative;
+	overflow: hidden;
+}
+
+.ocb-vehicle-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: linear-gradient(90deg, var(--ocb-primary), var(--ocb-secondary));
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s ease;
+}
+
+.ocb-vehicle-card:hover {
+	border-color: var(--ocb-primary);
+	box-shadow: var(--ocb-shadow-lg);
+	transform: translateY(-4px);
+}
+
+.ocb-vehicle-card:hover::before {
+	transform: scaleX(1);
+}
+
+.ocb-vehicle-card.selected {
+	border-color: var(--ocb-primary);
+	background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+	box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+.ocb-vehicle-card.selected::before {
+	transform: scaleX(1);
+}
+
+.ocb-vehicle-icon {
+	font-size: 48px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.ocb-vehicle-name {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.ocb-vehicle-desc {
+	font-size: 13px;
+	color: var(--ocb-text-light);
+	text-align: center;
+	margin-bottom: 15px;
+	min-height: 36px;
+}
+
+.ocb-vehicle-price {
+	text-align: center;
+	padding-top: 15px;
+	border-top: 2px solid var(--ocb-border);
+}
+
+.ocb-price-label {
+	display: block;
+	font-size: 12px;
+	color: var(--ocb-text-light);
+	margin-bottom: 5px;
+}
+
+.ocb-price-amount {
+	display: block;
+	font-size: 28px;
+	font-weight: 800;
+	color: var(--ocb-primary);
+}
+
+.ocb-price-vat {
+	display: block;
+	font-size: 11px;
+	color: var(--ocb-text-light);
+	margin-top: 3px;
+}
+
+.ocb-loading-vehicles {
+	grid-column: 1 / -1;
+	text-align: center;
+	padding: 60px 20px;
+}
+
+.ocb-spinner {
+	width: 50px;
+	height: 50px;
+	border: 4px solid var(--ocb-border);
+	border-top-color: var(--ocb-primary);
+	border-radius: 50%;
+	animation: ocb-spin 0.8s linear infinite;
+	margin: 0 auto 20px;
+}
+
+@keyframes ocb-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.ocb-loading-vehicles p {
+	color: var(--ocb-text-light);
+	font-size: 14px;
+}
+
+/* ========================================
+   TIME SELECTION
+   ======================================== */
+
+.ocb-time-selection-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 25px;
+	margin-bottom: 30px;
+}
+
+.ocb-time-card {
+	background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+	border: 2px solid var(--ocb-border);
+	border-radius: var(--ocb-radius-lg);
+	padding: 25px;
+}
+
+.ocb-time-card-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+	padding-bottom: 15px;
+	border-bottom: 2px solid var(--ocb-border);
+}
+
+.ocb-time-card-header i {
+	font-size: 24px;
+	color: var(--ocb-primary);
+}
+
+.ocb-time-card-header h3 {
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin: 0;
+}
+
+.ocb-date-input,
+.ocb-time-select {
+	cursor: pointer;
+}
+
+/* ========================================
+   REVIEW CARDS
+   ======================================== */
+
+.ocb-review-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.ocb-review-card {
+	background: #ffffff;
+	border: 2px solid var(--ocb-border);
+	border-radius: var(--ocb-radius-lg);
+	overflow: hidden;
+}
+
+.ocb-review-card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 20px;
+	background: linear-gradient(135deg, var(--ocb-light-bg) 0%, #ffffff 100%);
+	border-bottom: 2px solid var(--ocb-border);
+}
+
+.ocb-review-card-header i {
+	font-size: 20px;
+	color: var(--ocb-primary);
+	margin-right: 10px;
+}
+
+.ocb-review-card-header h3 {
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin: 0;
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.ocb-edit-btn {
+	padding: 6px 12px;
+	background: transparent;
+	border: 2px solid var(--ocb-primary);
+	color: var(--ocb-primary);
+	border-radius: 8px;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.ocb-edit-btn:hover {
+	background: var(--ocb-primary);
+	color: #ffffff;
+}
+
+.ocb-review-card-body {
+	padding: 20px;
+}
+
+.ocb-review-route {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.ocb-review-point {
+	display: flex;
+	gap: 12px;
+}
+
+.ocb-review-point i {
+	font-size: 20px;
+	color: var(--ocb-primary);
+	flex-shrink: 0;
+}
+
+.ocb-review-point strong {
+	display: block;
+	font-size: 14px;
+	color: var(--ocb-text);
+	margin-bottom: 5px;
+}
+
+.ocb-review-point p {
+	font-size: 13px;
+	color: var(--ocb-text-light);
+	margin: 0 0 8px 0;
+}
+
+.ocb-postcode-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	background: var(--ocb-primary);
+	color: #ffffff;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.ocb-review-arrow {
+	text-align: center;
+	color: var(--ocb-text-light);
+	font-size: 20px;
+}
+
+.ocb-review-vehicle {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.ocb-vehicle-icon-large {
+	font-size: 48px;
+}
+
+.ocb-review-vehicle h4 {
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin: 0 0 5px 0;
+}
+
+.ocb-review-vehicle p {
+	font-size: 13px;
+	color: var(--ocb-text-light);
+	margin: 0;
+}
+
+.ocb-review-time {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.ocb-time-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.ocb-time-item i {
+	font-size: 20px;
+	color: var(--ocb-primary);
+}
+
+.ocb-time-item strong {
+	display: block;
+	font-size: 13px;
+	color: var(--ocb-text);
+	margin-bottom: 3px;
+}
+
+.ocb-time-item p {
+	font-size: 14px;
+	color: var(--ocb-text-light);
+	margin: 0;
+}
+
+.ocb-review-contact p {
+	font-size: 14px;
+	color: var(--ocb-text-light);
+	margin: 0 0 10px 0;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ocb-review-contact strong {
+	color: var(--ocb-text);
+	font-size: 16px;
+}
+
+/* ========================================
+   PRICE BREAKDOWN
+   ======================================== */
+
+.ocb-price-breakdown-card {
+	background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+	border: 3px solid var(--ocb-primary);
+	border-radius: var(--ocb-radius-lg);
+	padding: 25px;
+	margin-bottom: 25px;
+}
+
+.ocb-price-breakdown-card h3 {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--ocb-text);
+	margin: 0 0 20px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ocb-price-rows {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.ocb-price-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 15px;
+	color: var(--ocb-text-light);
+}
+
+.ocb-price-row span:last-child {
+	font-weight: 700;
+	color: var(--ocb-text);
+}
+
+.ocb-price-subtotal {
+	padding-top: 12px;
+	border-top: 2px solid var(--ocb-border);
+	margin-top: 5px;
+}
+
+.ocb-price-total {
+	padding: 18px;
+	background: linear-gradient(135deg, var(--ocb-primary), var(--ocb-secondary));
+	color: #ffffff;
+	border-radius: var(--ocb-radius);
+	margin-top: 8px;
+	font-size: 18px;
+}
+
+.ocb-price-total span {
+	color: #ffffff;
+	font-size: 24px;
+}
+
+/* ========================================
+   TERMS & CONDITIONS
+   ======================================== */
+
+.ocb-terms-section {
+	margin-bottom: 25px;
+}
+
+.ocb-checkbox-label {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 18px;
+	background: var(--ocb-light-bg);
+	border: 2px solid var(--ocb-border);
+	border-radius: var(--ocb-radius);
+	cursor: pointer;
+	transition: var(--ocb-transition);
+}
+
+.ocb-checkbox-label:hover {
+	border-color: var(--ocb-primary);
+	background: #ffffff;
+}
+
+.ocb-checkbox-label input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.ocb-checkbox-label span {
+	font-size: 14px;
+	color: var(--ocb-text);
+}
+
+.ocb-checkbox-label a {
+	color: var(--ocb-primary);
+	text-decoration: underline;
+}
+
+/* ========================================
+   FORM ACTIONS
+   ======================================== */
+
+.ocb-multi-form-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+	margin-top: 35px;
+	padding-top: 25px;
+	border-top: 2px solid var(--ocb-border);
+}
+
+.ocb-btn-secondary {
+	background: #ffffff;
+	color: var(--ocb-text);
+	border: 2px solid var(--ocb-border);
+	padding: 14px 28px;
+	font-size: 15px;
+	font-weight: 600;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase;
+	border-radius: var(--ocb-radius);
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ocb-btn-secondary:hover:not(:disabled) {
+	background: var(--ocb-light-bg);
+	border-color: var(--ocb-text-light);
+}
+
+.ocb-btn-primary {
+	background: linear-gradient(135deg, var(--ocb-primary), var(--ocb-secondary));
+	color: #ffffff;
+	border: none;
+	padding: 16px 32px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase;
+	border-radius: var(--ocb-radius);
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.ocb-btn-primary:hover:not(:disabled) {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.ocb-btn-primary:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.ocb-btn-success {
+	background: linear-gradient(135deg, var(--ocb-success), #38a169);
+	color: #ffffff;
+	border: none;
+	padding: 18px 36px;
+	font-size: 17px;
+	font-weight: 700;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase;
+	border-radius: var(--ocb-radius);
+	cursor: pointer;
+	transition: var(--ocb-transition);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.ocb-btn-success:hover:not(:disabled) {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(72, 187, 120, 0.4);
+}
+
+/* ========================================
+   MESSAGES
+   ======================================== */
+
+.ocb-message {
+	padding: 16px 20px;
+	border-radius: var(--ocb-radius);
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.ocb-message::before {
+	font-size: 20px;
+}
+
+.ocb-message-error {
+	background: #fff5f5;
+	color: #c53030;
+	border: 2px solid #fc8181;
+}
+
+.ocb-message-error::before {
+	content: '⚠️';
+}
+
+.ocb-message-success {
+	background: #f0fff4;
+	color: #22543d;
+	border: 2px solid #9ae6b4;
+}
+
+.ocb-message-success::before {
+	content: '✓';
+}
+
+/* ========================================
+   ADDRESS RESULTS
+   ======================================== */
+
+.ocb-address-results {
+	margin-top: 15px;
+	background: #ffffff;
+	border: 2px solid var(--ocb-border);
+	border-radius: var(--ocb-radius);
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.ocb-address-loading {
+	padding: 30px;
+	text-align: center;
+}
+
+.ocb-address-loading p {
+	color: var(--ocb-text-light);
+	font-size: 14px;
+	margin-top: 15px;
+}
+
+.ocb-address-item {
+	padding: 15px 18px;
+	border-bottom: 1px solid var(--ocb-border);
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.ocb-address-item:last-child {
+	border-bottom: none;
+}
+
+.ocb-address-item:hover {
+	background: var(--ocb-light-bg);
+}
+
+.ocb-address-item.selected {
+	background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+	border-left: 4px solid var(--ocb-primary);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+	.ocb-multi-step-container {
+		padding: 15px;
+	}
+
+	.ocb-multi-step-indicator {
+		padding: 20px 15px;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.ocb-multi-step-item {
+		min-width: 80px;
+	}
+
+	.ocb-step-label {
+		font-size: 11px;
+	}
+
+	.ocb-multi-form {
+		padding: 25px 20px;
+	}
+
+	.ocb-step-header h2 {
+		font-size: 22px;
+	}
+
+	.ocb-form-row {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-service-selector {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-vehicles-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-time-selection-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-review-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ocb-route-display {
+		flex-direction: column;
+	}
+
+	.ocb-multi-form-actions {
+		flex-direction: column-reverse;
+	}
+
+	.ocb-btn-secondary,
+	.ocb-btn-primary,
+	.ocb-btn-success {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.ocb-input-with-button {
+		flex-direction: column;
+	}
+
+	.ocb-btn-icon {
+		width: 100%;
+		justify-content: center;
+	}
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+	.ocb-multi-step-indicator,
+	.ocb-multi-form-actions,
+	.ocb-edit-btn {
+		display: none;
+	}
+}

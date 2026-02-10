@@ -1,0 +1,1783 @@
+/**
+ * OnRoute Booking - Professional Style
+ * Fonts: Rajdhani (headings), Poppins (content)
+ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Modern SaaS Color Palette */
+    --ocb-primary: #d63031; /* Softened Red */
+    --ocb-primary-dark: #b33939;
+    --ocb-secondary: #1a1a1a;
+    --ocb-accent: #f8f9fa;
+    --ocb-text-main: #2d3436;
+    --ocb-text-muted: #636e72;
+    --ocb-white: #ffffff;
+    --ocb-border: #edf2f7;
+    --ocb-success: #00b894;
+    --ocb-black: #000000;
+    --ocb-dark: #2d3436;
+    --ocb-light: #f8f9fa;
+    --ocb-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ocb-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --ocb-radius: 12px;
+    --ocb-font-main: 'Poppins', sans-serif;
+    --ocb-font-heading: 'Rajdhani', sans-serif;
+}
+
+::selection {
+    background: var(--ocb-primary);
+    color: var(--ocb-white);
+}
+
+.ocb-booking-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    padding-left: max(30px, calc((100% - 1000px) / 2));
+    padding-right: max(30px, calc((100% - 1000px) / 2));
+    font-family: var(--ocb-font-main) !important;
+    color: var(--ocb-text-main);
+    background: var(--ocb-white);
+    border-radius: var(--ocb-radius);
+    box-shadow: var(--ocb-shadow-lg);
+    line-height: 1.6;
+}
+
+.ocb-booking-wrapper h1,
+.ocb-booking-wrapper h2,
+.ocb-booking-wrapper h3,
+.ocb-booking-wrapper h4,
+.ocb-booking-wrapper .ocb-service-title,
+.ocb-booking-wrapper .ocb-card-title,
+.ocb-booking-wrapper .ocb-nav-tab {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Modern Navigation Tabs */
+.ocb-nav-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    background: #f1f2f6;
+    padding: 8px;
+    border-radius: 16px;
+    justify-content: space-between;
+}
+
+.ocb-nav-tab {
+    flex: 1;
+    text-align: center;
+    padding: 14px 10px;
+    background: transparent;
+    border: none !important;
+    border-radius: 12px;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ocb-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ocb-nav-tab:hover {
+    background: rgba(230, 33, 41, 0.05);
+    color: var(--ocb-primary);
+    transform: none;
+}
+
+.ocb-nav-tab.active {
+    background: var(--ocb-primary) !important;
+    color: var(--ocb-white) !important;
+    box-shadow: 0 4px 12px rgba(230, 33, 41, 0.3);
+}
+
+.ocb-nav-tab.completed {
+    background: #dfe4ea;
+    color: var(--ocb-secondary);
+}
+
+.ocb-nav-tab.completed::after {
+    content: '✓';
+    font-size: 12px;
+    background: var(--ocb-success);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Step Panels */
+.ocb-step-panel {
+    display: none;
+}
+
+.ocb-step-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Quote Header */
+.ocb-quote-header {
+    margin-bottom: 25px;
+}
+
+.ocb-quote-header h1 {
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ocb-dark);
+    margin: 0 0 8px 0;
+}
+
+.ocb-quote-validity {
+    color: var(--ocb-gray);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Postcodes Row */
+.ocb-postcodes-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--ocb-border);
+}
+
+.ocb-postcode-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ocb-pc-label {
+    color: var(--ocb-gray);
+}
+
+.ocb-pc-value {
+    font-weight: 600;
+    color: var(--ocb-dark);
+}
+
+.ocb-change-btn {
+    margin-left: auto;
+    background: var(--ocb-black);
+    color: var(--ocb-white) !important;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s;
+    font-family: var(--ocb-font-heading);
+}
+
+.ocb-change-btn:hover {
+    background: #000;
+}
+
+/* Change Date Section (Step 2) */
+.ocb-change-date-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-left: 4px solid #E84545;
+    border-radius: 4px;
+}
+
+.ocb-change-date-section p {
+    margin: 0 0 12px 0;
+    color: var(--ocb-dark);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ocb-change-link {
+    display: inline-block;
+    color: #E84545 !important;
+    text-decoration: none;
+    font-family: var(--ocb-font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.ocb-change-link:hover {
+    color: #d63031 !important;
+    text-decoration: underline;
+}
+
+/* Service Sections */
+.ocb-service-section {
+    margin-bottom: 40px;
+}
+
+.ocb-service-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ocb-dark);
+    margin: 0 0 8px 0;
+}
+
+.ocb-service-desc {
+    color: var(--ocb-gray);
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+
+.ocb-service-desc strong {
+    color: var(--ocb-dark);
+}
+
+/* Vehicles Row */
+.ocb-vehicles-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+@media (max-width: 900px) {
+    .ocb-vehicles-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+    .ocb-vehicles-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .ocb-vehicles-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Vehicle Card */
+.ocb-v-card {
+    background: var(--ocb-white);
+    border: 2px solid var(--ocb-border);
+    border-radius: 10px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: var(--ocb-font-body);
+}
+
+.ocb-v-card:hover {
+    border-color: var(--ocb-black);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.ocb-v-card:hover .ocb-v-icon {
+    color: var(--ocb-black);
+}
+
+.ocb-v-card:hover .ocb-v-name {
+    color: var(--ocb-black);
+}
+
+.ocb-v-card:hover .ocb-v-price {
+    color: var(--ocb-black);
+}
+
+.ocb-v-card:hover .ocb-v-btn {
+    background: var(--ocb-black);
+    border-color: var(--ocb-black);
+    color: var(--ocb-white);
+}
+
+.ocb-v-card.selected {
+    border-color: var(--ocb-primary);
+    border-width: 3px;
+    background: linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%);
+    box-shadow: 0 8px 30px rgba(198, 40, 40, 0.2);
+}
+
+.ocb-v-card.selected .ocb-v-icon {
+    color: var(--ocb-primary);
+}
+
+.ocb-v-card.selected .ocb-v-name {
+    color: var(--ocb-primary);
+}
+
+.ocb-v-card.selected .ocb-v-price {
+    color: var(--ocb-primary);
+}
+
+.ocb-v-icon {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    color: var(--ocb-primary);
+    transition: color 0.3s ease;
+}
+
+.ocb-v-icon svg {
+    width: 55px;
+    height: 55px;
+    transition: all 0.3s ease;
+}
+
+.ocb-v-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ocb-primary);
+    margin-bottom: 8px;
+    font-family: var(--ocb-font-heading);
+    transition: color 0.3s ease;
+}
+
+.ocb-v-desc {
+    font-size: 12px;
+    color: var(--ocb-dark);
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.ocb-v-specs {
+    font-size: 13px;
+    color: var(--ocb-primary-dark);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.ocb-v-weight {
+    font-size: 12px;
+    color: var(--ocb-gray);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.ocb-v-price {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ocb-primary-dark);
+    margin-bottom: 2px;
+    font-family: var(--ocb-font-heading);
+    transition: color 0.3s ease;
+}
+
+.ocb-v-price-label {
+    font-size: 11px;
+    color: var(--ocb-gray);
+    margin-bottom: 8px;
+}
+
+.ocb-v-price-vat {
+    font-size: 14px;
+    color: var(--ocb-primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-top: 1px solid var(--ocb-border);
+    padding-top: 8px;
+    margin-top: 5px;
+}
+
+.ocb-v-btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border: 2px solid var(--ocb-black);
+    border-radius: 4px;
+    background: var(--ocb-white);
+    color: var(--ocb-black) !important;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--ocb-font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ocb-v-btn:hover {
+    background: var(--ocb-primary) !important;
+    border-color: var(--ocb-primary) !important;
+    color: var(--ocb-white) !important;
+    box-shadow: 0 4px 12px rgba(214, 48, 49, 0.4);
+}
+
+.ocb-v-card:hover .ocb-v-btn {
+    background: var(--ocb-primary) !important;
+    border-color: var(--ocb-primary) !important;
+    color: var(--ocb-white) !important;
+}
+
+.ocb-v-card.selected .ocb-v-btn {
+    background: var(--ocb-primary) !important;
+    border-color: var(--ocb-primary) !important;
+    color: var(--ocb-white) !important;
+}
+
+/* Booking Layout (Step 2) */
+.ocb-booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .ocb-booking-layout {
+        grid-template-columns: 1fr;
+    }
+    .ocb-booking-sidebar { order: -1; }
+}
+
+.ocb-booking-main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Form Cards */
+.ocb-form-card {
+    background: var(--ocb-white);
+    border: 1px solid var(--ocb-border);
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.ocb-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ocb-primary-dark); /* Keep blue for titles as per screenshot? No user said revert palette. */
+    color: var(--ocb-primary);
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ocb-border);
+    font-family: var(--ocb-font-heading);
+}
+
+/* CitySprint Style Form Layout */
+.ocb-cs-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ocb-cs-grid label {
+    font-weight: 600;
+    color: var(--ocb-primary-dark);
+    font-size: 14px;
+}
+
+.ocb-cs-grid-postcode {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.ocb-cs-grid-postcode label {
+    text-align: right;
+    margin-right: 5px;
+    color: var(--ocb-primary); /* Starred red? Or just label? */
+}
+
+@media (max-width: 768px) {
+    .ocb-cs-grid {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    .ocb-cs-grid-postcode {
+        grid-template-columns: 1fr;
+    }
+    .ocb-cs-grid-postcode label {
+        text-align: left;
+    }
+}
+
+/* Date Time Selector - CitySprint Style */
+.ocb-datetime-wrapper {
+    background: #f0f2f5;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #dce0e5;
+}
+
+.ocb-dt-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ocb-dark);
+    font-weight: 500;
+}
+
+.ocb-dt-group i {
+    color: var(--ocb-primary);
+}
+
+.ocb-dt-input {
+    border: 1px solid #dce0e5;
+    background: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: var(--ocb-font-main);
+    font-size: 14px;
+    color: var(--ocb-dark);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.ocb-dt-input:focus {
+    border-color: var(--ocb-primary);
+    box-shadow: 0 0 0 2px rgba(214, 48, 49, 0.1);
+}
+
+#ocb_step2_date {
+    min-width: 140px;
+}
+
+#ocb_step2_time {
+    min-width: 110px;
+}
+
+.ocb-dt-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-left: 5px;
+    color: var(--ocb-primary);
+}
+
+.ocb-dt-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: var(--ocb-primary-dark);
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.ocb-dt-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+@media (max-width: 600px) {
+    .ocb-form-grid-2 { grid-template-columns: 1fr; }
+}
+
+.ocb-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ocb-field-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ocb-dark);
+}
+
+.ocb-field-group label .required {
+    color: var(--ocb-primary);
+}
+
+.ocb-field {
+    padding: 10px 12px;
+    border: 1px solid var(--ocb-border);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--ocb-dark);
+    background: var(--ocb-white);
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    height: 42px; /* Fixed height to match buttons */
+}
+
+.ocb-field:focus {
+    outline: none;
+    border-color: var(--ocb-primary);
+}
+
+.ocb-field[readonly] {
+    background: var(--ocb-light);
+}
+
+.ocb-textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+.ocb-full-width {
+    grid-column: 1 / -1;
+}
+
+.ocb-char-count {
+    font-weight: 400;
+    color: var(--ocb-gray);
+    font-size: 12px;
+}
+
+.ocb-field-btn {
+    justify-content: flex-end;
+}
+
+.ocb-select-address-btn {
+    padding: 10px 20px;
+    background: var(--ocb-primary);
+    color: var(--ocb-white);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif !important;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.ocb-select-address-btn:hover {
+    background: var(--ocb-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Delivery Time Row */
+.ocb-delivery-time-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    margin: 15px 0;
+    border-top: 1px solid var(--ocb-border);
+    border-bottom: 1px solid var(--ocb-border);
+    flex-wrap: wrap;
+}
+
+.ocb-delivery-time-row label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ocb-dark);
+}
+
+.ocb-datetime-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.ocb-date { width: 150px; }
+.ocb-time { width: 100px; }
+
+/* Sidebar */
+.ocb-booking-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ocb-help-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: var(--ocb-light);
+    border-radius: var(--ocb-radius);
+}
+
+.ocb-help-icon { 
+    font-size: 24px; 
+    color: var(--ocb-primary);
+}
+
+.ocb-help-text strong {
+    display: block;
+    color: var(--ocb-primary);
+    margin-bottom: 5px;
+}
+
+.ocb-help-text p {
+    margin: 0;
+    color: var(--ocb-gray);
+}
+
+.ocb-help-text a {
+    color: var(--ocb-primary);
+    text-decoration: none;
+}
+
+.ocb-why-choose {
+    padding: 20px;
+    background: var(--ocb-light);
+    border-radius: var(--ocb-radius);
+}
+
+.ocb-why-choose h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ocb-dark);
+    margin: 0 0 15px 0;
+}
+
+.ocb-why-choose ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ocb-why-choose li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--ocb-gray);
+}
+
+.ocb-why-choose li:last-child { margin-bottom: 0; }
+
+.ocb-why-choose li i {
+    color: var(--ocb-primary);
+    margin-top: 3px;
+}
+
+.ocb-why-choose li strong {
+    color: var(--ocb-dark);
+}
+
+/* Navigation */
+.ocb-step-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.ocb-step-nav .ocb-btn-back {
+    margin-right: auto;
+}
+
+.ocb-step-nav .ocb-btn-next,
+.ocb-step-nav .ocb-btn-submit {
+    margin-left: auto;
+}
+
+.ocb-btn {
+    padding: 12px 30px;
+    border-radius: var(--ocb-radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    white-space: nowrap;
+}
+
+.ocb-btn-back {
+    background: var(--ocb-white);
+    color: #424242;
+    border: 2px solid #bdbdbd;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif !important;
+    text-transform: uppercase;
+}
+
+.ocb-btn-back:hover {
+    background: #f5f5f5;
+    color: #212121;
+    border-color: #9e9e9e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ocb-btn-next,
+.ocb-btn-submit {
+    background: #00C853 !important; /* Material Green A700 */
+    color: var(--ocb-white) !important;
+    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif !important;
+    text-transform: uppercase;
+}
+
+.ocb-btn-next:hover,
+.ocb-btn-submit:hover {
+    background: #009624 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 150, 36, 0.4);
+}
+
+.ocb-btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+}
+
+.ocb-btn-submit:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.ocb-btn-submit:disabled .fas {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Review (Step 3) */
+.ocb-review-header {
+    margin-bottom: 30px;
+}
+
+.ocb-review-header h1 {
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+}
+
+.ocb-review-header p {
+    color: var(--ocb-gray);
+    margin: 0;
+}
+
+.ocb-review-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 700px) {
+    .ocb-review-grid { grid-template-columns: 1fr; }
+}
+
+.ocb-review-card {
+    background: var(--ocb-light);
+    border-radius: var(--ocb-radius);
+    padding: 20px;
+}
+
+.ocb-review-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ocb-black);
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ocb-font-heading);
+}
+
+.ocb-review-card h3 i {
+    color: var(--ocb-primary);
+}
+
+.ocb-review-item {
+    display: grid;
+    grid-template-columns: 110px 1fr; /* Use Grid for perfect alignment */
+    gap: 15px; /* Consistent spacing */
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ocb-border);
+}
+
+.ocb-review-item:last-child { border-bottom: none; }
+
+.ocb-r-label { 
+    color: var(--ocb-gray);
+    font-weight: 500;
+}
+
+.ocb-r-value, .ocb-r-value-group {
+    font-weight: 600;
+    color: var(--ocb-dark);
+    text-align: left; /* Align values to left to avoid huge gaps */
+    word-break: break-word; /* Prevent overflow */
+}
+
+.ocb-r-value-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Space between lines in address block */
+}
+
+/* Price Box */
+.ocb-price-box {
+    background: linear-gradient(135deg, var(--ocb-black) 0%, #1a1a1a 100%);
+    color: var(--ocb-white);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.ocb-price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-size: 15px;
+    font-family: var(--ocb-font-body);
+}
+
+.ocb-price-vat {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 15px;
+}
+
+.ocb-price-total {
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 15px;
+}
+
+.ocb-price-total span:last-child {
+    color: var(--ocb-primary);
+    font-family: var(--ocb-font-heading);
+}
+
+/* Terms */
+.ocb-terms { margin-bottom: 25px; }
+
+.ocb-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.ocb-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--ocb-primary);
+}
+
+.ocb-checkbox a {
+    color: var(--ocb-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ocb-checkbox a:hover { text-decoration: underline; }
+
+/* Flatpickr Date/Time Picker Improvements */
+.flatpickr-calendar {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: none;
+}
+
+.flatpickr-calendar.open {
+    z-index: 99998;
+}
+
+.flatpickr-months {
+    padding: 10px;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background-color: #d63031;
+    border-color: #d63031;
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover {
+    background-color: #b33939;
+    border-color: #b33939;
+}
+
+.flatpickr-day.today {
+    border-color: #d63031;
+    font-weight: bold;
+}
+
+.numInputWrapper:hover,
+.numInputWrapper:focus-within {
+    background: rgba(198, 40, 40, 0.1);
+}
+
+/* Loading */
+.ocb-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: var(--ocb-white);
+    z-index: 99999;
+}
+
+.ocb-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top-color: var(--ocb-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Font Awesome Fix */
+.fas, .far, .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", FontAwesome !important;
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Responsive Styles for Elementor 50% Column */
+/* Responsive Design - Desktop to Mobile */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1200px) {
+    .ocb-booking-wrapper {
+        max-width: 100%;
+        padding: 25px 20px;
+        margin: 20px auto;
+    }
+    
+    .ocb-form-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .ocb-booking-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .ocb-booking-main {
+        flex-direction: column;
+    }
+    
+    .ocb-booking-content,
+    .ocb-booking-sidebar {
+        width: 100%;
+    }
+    
+    .ocb-vehicles-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .ocb-booking-wrapper {
+        padding: 20px 16px;
+    }
+    
+    .ocb-vehicles-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .ocb-postcodes-row {
+        gap: 20px;
+    }
+    
+    .ocb-form-card {
+        padding: 18px;
+    }
+    
+    .ocb-step-nav {
+        flex-direction: column;
+    }
+    
+    .ocb-step-nav .ocb-btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+    
+    .ocb-step-nav .ocb-btn-back {
+        order: 2;
+    }
+    
+    .ocb-step-nav .ocb-btn-next,
+    .ocb-step-nav .ocb-btn-submit {
+        order: 1;
+    }
+}
+
+/* Mobile Phones - Landscape & Portrait */
+@media (max-width: 768px) {
+    .ocb-booking-wrapper {
+        padding: 18px 16px;
+    }
+    
+    .ocb-nav-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .ocb-nav-tab {
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 10px 16px;
+        flex-shrink: 0;
+    }
+    
+    .ocb-select-address-btn {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+        display: block;
+    }
+    
+    .ocb-step-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .ocb-step-nav .ocb-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 15px;
+        margin: 0 !important;
+    }
+    
+    .ocb-step-nav .ocb-btn-back {
+        order: 2;
+    }
+    
+    .ocb-step-nav .ocb-btn-next,
+    .ocb-step-nav .ocb-btn-submit {
+        order: 1;
+    }
+    
+    .ocb-datetime-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .ocb-date,
+    .ocb-time {
+        width: 100%;
+    }
+    
+    .ocb-vehicles-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ocb-v-card {
+        padding: 25px 20px;
+    }
+
+    .ocb-v-btn {
+        padding: 12px 32px;
+        font-size: 14px;
+    }
+    
+    .ocb-postcodes-row {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .ocb-change-btn {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .ocb-form-card {
+        padding: 15px;
+    }
+    
+    .ocb-form-grid-2 {
+        gap: 12px;
+    }
+    
+    .ocb-field {
+        font-size: 16px;
+    }
+    
+    .ocb-quote-header h1 {
+        font-size: 24px;
+    }
+    
+    .ocb-service-title {
+        font-size: 18px;
+    }
+}
+
+/* Small Mobile Phones */
+@media (max-width: 480px) {
+    /* Ultra Compact Mobile View */
+    .ocb-booking-wrapper {
+        padding: 16px 14px !important;
+        margin: 10px auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Tabs Navigation */
+    .ocb-nav-tabs {
+        padding-bottom: 5px !important;
+        gap: 5px !important;
+        margin-bottom: 15px !important;
+        justify-content: space-between;
+    }
+
+    .ocb-nav-tab {
+        font-size: 10px !important;
+        padding: 6px 4px !important;
+        text-align: center;
+        flex: 1;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    /* Compact Header */
+    .ocb-quote-header {
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .ocb-quote-header h1 {
+        font-size: 18px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .ocb-quote-validity {
+        font-size: 11px !important;
+    }
+
+    /* Compact Postcodes - CENTERED */
+    .ocb-postcodes-row {
+        gap: 15px !important;
+        padding: 15px 0 !important;
+        margin-bottom: 20px !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr; /* Side by side postcodes */
+        align-items: start !important;
+        text-align: center !important; /* Center text */
+    }
+
+    .ocb-postcode-item {
+        flex-direction: column;
+        align-items: center !important; /* Center items */
+        justify-content: center !important;
+        gap: 4px !important;
+        width: 100%;
+    }
+    
+    .ocb-pc-label {
+        font-size: 11px !important;
+        white-space: nowrap;
+        margin-bottom: 2px !important;
+        text-transform: uppercase;
+        opacity: 0.8;
+    }
+
+    .ocb-pc-value {
+        font-size: 14px !important; /* Slightly larger */
+        word-break: break-all;
+        line-height: 1.3;
+    }
+
+    .ocb-change-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px 15px !important;
+        font-size: 12px !important;
+        text-align: center;
+    }
+
+    /* Service Section */
+    .ocb-service-section {
+        margin-bottom: 25px !important;
+    }
+
+    .ocb-service-title {
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+        text-align: center; /* Center Title */
+    }
+
+    .ocb-service-desc {
+        font-size: 12px !important;
+        margin-bottom: 15px !important;
+        line-height: 1.5 !important;
+        opacity: 0.9;
+        text-align: center; /* Center Description */
+    }
+    
+    .ocb-field {
+        font-size: 16px;
+        padding: 12px 10px;
+    }
+
+    /* Vehicle Cards - BIGGER & SPACED */
+    .ocb-vehicles-row {
+        gap: 20px !important; /* Increased gap */
+    }
+    
+    .ocb-v-card {
+        padding: 25px 20px !important; /* INCREASED padding significantly */
+        border-width: 1px !important;
+        border-radius: 12px !important;
+        margin: 0 5px !important; /* Add side margin to prevent touching borders */
+    }
+    
+    .ocb-v-icon {
+        height: 45px !important; /* Larger icon */
+        margin-bottom: 12px !important;
+    }
+
+    .ocb-v-icon svg {
+        width: 45px !important; 
+        height: 45px !important;
+    }
+    
+    .ocb-v-name {
+        font-size: 16px !important; /* Larger name */
+        margin-bottom: 8px !important;
+        line-height: 1.2;
+    }
+
+    .ocb-v-price {
+        font-size: 20px !important; /* Larger price */
+        margin-bottom: 5px !important;
+    }
+
+    .ocb-v-price-label {
+         font-size: 11px !important;
+         margin-bottom: 8px !important;
+    }
+    
+    .ocb-v-price-vat {
+        font-size: 11px !important;
+        padding-top: 5px !important;
+        margin-bottom: 8px !important;
+        margin-top: 2px !important;
+    }
+
+
+    .ocb-v-desc,
+    .ocb-v-weight,
+    .ocb-v-specs {
+        font-size: 10px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .ocb-v-btn {
+        padding: 14px 28px !important; /* Larger button padding */
+        font-size: 14px !important;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .ocb-form-card {
+        padding: 20px 15px !important; /* Increased padding */
+        margin-bottom: 25px !important;
+    }
+
+    .ocb-step-nav .ocb-btn {
+        padding: 12px !important;
+        font-size: 13px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* =========================================
+   ADDRESS LOOKUP MODAL STYLES
+   Migrated from forms.css
+   ========================================= */
+/* --- Address Selection Modal (Refreshed Black & Red Theme) --- */
+.ocb-address-modal {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	background: rgba(0, 0, 0, 0.8) !important;
+	z-index: 999999 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	transition: all 0.3s ease !important;
+	backdrop-filter: blur(4px) !important;
+}
+
+.ocb-address-modal.hidden {
+	display: none !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+}
+
+.ocb-address-modal-content {
+	background: #ffffff !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	border-radius: 12px !important;
+	box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3) !important;
+	max-width: 650px !important;
+	width: 95% !important;
+	animation: ocb-modal-slide-in 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+	overflow: hidden !important;
+	border: 1px solid #333 !important;
+}
+
+@keyframes ocb-modal-slide-in {
+	from { opacity: 0; transform: translateY(40px) scale(0.95); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ocb-address-modal-header {
+	padding: 18px 24px !important;
+	background: #1a1a1a !important;
+	border-bottom: 3px solid var(--ocb-primary) !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+}
+
+.ocb-address-modal-header h3 {
+	margin: 0 !important;
+	font-size: 20px !important;
+	font-weight: 700 !important;
+	color: #ffffff !important;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1px !important;
+}
+
+.ocb-address-modal-close {
+	background: rgba(255, 255, 255, 0.1) !important;
+	border: none !important;
+	font-size: 24px !important;
+	cursor: pointer !important;
+	color: #fff !important;
+	padding: 0 !important;
+	width: 32px !important;
+	height: 32px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	border-radius: 50% !important;
+	transition: all 0.2s !important;
+	line-height: 1 !important;
+}
+
+.ocb-address-modal-close:hover {
+	background: var(--ocb-primary) !important;
+	color: #fff !important;
+	transform: rotate(90deg) !important;
+}
+
+.ocb-address-modal-body {
+	padding: 0 !important;
+	max-height: 450px !important;
+	overflow-y: auto !important;
+	min-height: 180px !important;
+	background: #fdfdfd !important;
+}
+
+.ocb-address-loading {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 60px 20px !important;
+	color: #333 !important;
+	font-weight: 600 !important;
+}
+
+.ocb-address-loading.hidden {
+	display: none !important;
+}
+
+.ocb-spinner-small {
+	width: 45px !important;
+	height: 45px !important;
+	border: 4px solid #f3f3f3 !important;
+	border-top: 4px solid var(--ocb-primary) !important;
+	border-radius: 50% !important;
+	animation: ocb-spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite !important;
+	margin-bottom: 15px !important;
+	box-shadow: 0 4px 10px rgba(220, 38, 38, 0.1) !important;
+}
+
+@keyframes ocb-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.ocb-address-list {
+	display: block !important;
+	width: 100% !important;
+}
+
+.ocb-address-table {
+	width: 100% !important;
+	border-collapse: collapse !important;
+	margin: 0 !important;
+}
+
+.ocb-address-table thead {
+	background: #f3f4f6 !important;
+	position: sticky !important;
+	top: 0 !important;
+	z-index: 10 !important;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+.ocb-address-table thead th {
+	padding: 14px 20px !important;
+	text-align: left !important;
+	font-weight: 700 !important;
+	color: #1a1a1a !important;
+	font-size: 14px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px !important;
+}
+
+.ocb-address-row {
+	cursor: pointer !important;
+	border-bottom: 1px solid #edf2f7 !important;
+	transition: all 0.2s ease !important;
+}
+
+.ocb-address-row:hover {
+	background: #fff5f5 !important;
+}
+
+.ocb-address-row.ocb-address-row-selected {
+	background: #fff1f2 !important;
+	border-left: 4px solid var(--ocb-primary) !important;
+}
+
+.ocb-address-row td {
+	padding: 16px 20px !important;
+	vertical-align: middle !important;
+}
+
+.ocb-address-col-select {
+	width: 50px !important;
+	text-align: center !important;
+}
+
+.ocb-address-row input[type="radio"] {
+	appearance: none !important;
+	-webkit-appearance: none !important;
+	width: 20px !important;
+	height: 20px !important;
+	border: 2px solid #cbd5e0 !important;
+	border-radius: 50% !important;
+	margin: 0 !important;
+	position: relative !important;
+	cursor: pointer !important;
+	transition: all 0.2s !important;
+}
+
+.ocb-address-row input[type="radio"]:checked {
+	border-color: var(--ocb-primary) !important;
+	background: #fff !important;
+}
+
+.ocb-address-row input[type="radio"]:checked::after {
+	content: "" !important;
+	position: absolute !important;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+	width: 10px !important;
+	height: 10px !important;
+	background: var(--ocb-primary) !important;
+	border-radius: 50% !important;
+}
+
+.ocb-address-link {
+	text-decoration: none !important;
+	display: block !important;
+}
+
+.ocb-address-name {
+	font-weight: 700 !important;
+	color: #1a1a1a !important;
+	font-size: 15px !important;
+	margin-bottom: 4px !important;
+}
+
+.ocb-address-details {
+	font-size: 14px !important;
+	color: #4a5568 !important;
+	line-height: 1.5 !important;
+}
+
+.ocb-pagination {
+	display: flex !important;
+	justify-content: center !important;
+	gap: 6px !important;
+	padding: 20px !important;
+	background: #f9fafb !important;
+	border-top: 1px solid #edf2f7 !important;
+}
+
+.ocb-page-link {
+	min-width: 36px !important;
+	height: 36px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #fff !important;
+	color: #1a1a1a !important;
+	font-weight: 600 !important;
+	cursor: pointer !important;
+	transition: all 0.2s !important;
+	font-size: 14px !important;
+}
+
+.ocb-page-link:hover:not(.active) {
+	border-color: var(--ocb-primary) !important;
+	color: var(--ocb-primary) !important;
+	background: #fff5f5 !important;
+}
+
+.ocb-page-link.active {
+	background: var(--ocb-primary) !important;
+	color: #fff !important;
+	border-color: var(--ocb-primary) !important;
+}
+
+.ocb-address-modal-footer {
+	padding: 20px 24px !important;
+	background: #ffffff !important;
+	border-top: 1px solid #edf2f7 !important;
+	display: flex !important;
+	justify-content: flex-end !important;
+	gap: 12px !important;
+}
+
+.ocb-address-modal-footer .ocb-btn {
+	padding: 10px 20px !important;
+	font-size: 14px !important;
+	font-weight: 700 !important;
+	border-radius: 8px !important;
+	font-family: 'Rajdhani', sans-serif !important;
+	text-transform: uppercase !important;
+}
+
+.ocb-address-error {
+	background: #fff5f5 !important;
+	color: #c53030 !important;
+	padding: 20px !important;
+	margin: 20px !important;
+	border-radius: 8px !important;
+	border: 1px solid #feb2b2 !important;
+	font-weight: 600 !important;
+	text-align: center !important;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+	.ocb-address-modal-content {
+		width: 100% !important;
+		height: 100% !important;
+		max-width: none !important;
+		border-radius: 0 !important;
+	}
+
+	.ocb-address-modal-body {
+		max-height: calc(100vh - 160px) !important;
+	}
+
+	.ocb-address-modal-footer {
+		position: fixed !important;
+		bottom: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		flex-direction: column !important;
+	}
+	
+	.ocb-address-modal-footer .ocb-btn {
+		width: 100% !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.ocb-address-modal-content {
+		margin: 20px auto !important;
+		width: 98% !important;
+		border-radius: 8px !important;
+	}
+
+	.ocb-address-modal-header {
+		padding: 15px !important;
+	}
+
+	.ocb-address-modal-header h3 {
+		font-size: 16px !important;
+	}
+
+	.ocb-address-modal-body {
+		padding: 15px !important;
+		max-height: 50vh !important;
+	}
+
+	.ocb-address-item {
+		padding: 10px !important;
+		gap: 8px !important;
+	}
+
+	.ocb-address-modal-footer {
+		padding: 15px !important;
+		gap: 8px !important;
+	}
+}
+

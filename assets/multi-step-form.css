@@ -1,0 +1,596 @@
+/* Multi-Step Form Styling */
+
+.ocb-multi-step-container {
+	max-width: 700px;
+	margin: 30px auto;
+	padding: 30px;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Quote Summary Box */
+.ocb-quote-summary-box {
+	background: #f0f8ff;
+	border-left: 4px solid #007cba;
+	padding: 15px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+
+/* Postcodes Summary */
+.ocb-postcodes-summary {
+	background: #f9f9f9;
+	padding: 20px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	border: 1px solid #e0e0e0;
+}
+
+.ocb-postcode-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.ocb-postcode-item {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.ocb-postcode-label {
+	display: block;
+	font-size: 12px;
+	color: #999;
+	font-weight: 500;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.ocb-postcode-value {
+	display: block;
+	font-size: 18px;
+	font-weight: 700;
+	color: #007cba;
+}
+
+.ocb-postcode-arrow {
+	font-size: 20px;
+	color: #007cba;
+	margin: 0 10px;
+}
+
+/* Step Indicator */
+.ocb-multi-step-indicator {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 40px;
+	position: relative;
+}
+
+.ocb-multi-step-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 1;
+	position: relative;
+	z-index: 2;
+}
+
+.ocb-step-number {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #e0e0e0;
+	color: #999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 8px;
+	transition: all 0.3s ease;
+}
+
+.ocb-step-label {
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+	max-width: 80px;
+	transition: all 0.3s ease;
+}
+
+.ocb-multi-step-item.ocb-multi-step-active .ocb-step-number {
+	background: #007cba;
+	color: white;
+	box-shadow: 0 0 0 4px rgba(0, 124, 186, 0.1);
+}
+
+.ocb-multi-step-item.ocb-multi-step-active .ocb-step-label {
+	color: #007cba;
+	font-weight: 600;
+}
+
+.ocb-multi-step-item.ocb-multi-step-completed .ocb-step-number {
+	background: #28a745;
+	color: white;
+}
+
+.ocb-multi-step-item.ocb-multi-step-completed .ocb-step-label {
+	color: #28a745;
+}
+
+.ocb-step-connector {
+	position: absolute;
+	top: 20px;
+	height: 2px;
+	background: #e0e0e0;
+	z-index: 1;
+	transition: all 0.3s ease;
+}
+
+.ocb-multi-step-item:not(:last-child) .ocb-step-connector {
+	width: calc(100% - 50px);
+	left: calc(50% + 25px);
+}
+
+.ocb-multi-step-item.ocb-multi-step-completed ~ .ocb-multi-step-item .ocb-step-connector {
+	background: #28a745;
+}
+
+/* Multi-Step Form */
+.ocb-multi-form {
+	position: relative;
+}
+
+.ocb-multi-step-content {
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.ocb-multi-step-content h2 {
+	font-size: 24px;
+	color: #333;
+	margin: 0 0 10px 0;
+	font-weight: 600;
+}
+
+.ocb-multi-step-content > p {
+	color: #666;
+	margin: 0 0 20px 0;
+	font-size: 14px;
+}
+
+/* Form Sections */
+.ocb-form-section {
+	margin-bottom: 30px;
+}
+
+.ocb-form-section h3 {
+	font-size: 16px;
+	color: #333;
+	margin: 0 0 15px 0;
+	font-weight: 600;
+	border-bottom: 1px solid #e0e0e0;
+	padding-bottom: 10px;
+}
+
+.ocb-form-section label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: 8px;
+	color: #333;
+	font-size: 14px;
+}
+
+.ocb-form-section label small {
+	display: block;
+	font-weight: normal;
+	color: #999;
+	margin-top: 3px;
+}
+
+/* Form Inputs */
+.ocb-field {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	font-family: inherit;
+	transition: border-color 0.3s ease;
+	box-sizing: border-box;
+}
+
+.ocb-field:focus {
+	outline: none;
+	border-color: #007cba;
+	box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
+}
+
+/* Form Row */
+.ocb-form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+	margin-bottom: 15px;
+}
+
+.ocb-form-col {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 600px) {
+	.ocb-form-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Service Buttons */
+.ocb-service-selector {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 30px;
+	flex-wrap: wrap;
+}
+
+.ocb-service-btn {
+	flex: 1;
+	min-width: 120px;
+	padding: 15px;
+	background: #f5f5f5;
+	border: 2px solid #e0e0e0;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	color: #666;
+}
+
+.ocb-service-btn:hover {
+	border-color: #007cba;
+	background: #f0f8ff;
+}
+
+.ocb-service-btn.ocb-service-active {
+	background: #007cba;
+	border-color: #007cba;
+	color: white;
+}
+
+/* Vehicle Cards */
+.ocb-vehicles-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 15px;
+	margin-top: 20px;
+}
+
+.ocb-vehicle-card {
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 15px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-align: center;
+	background: #f9f9f9;
+}
+
+.ocb-vehicle-card:hover {
+	border-color: #007cba;
+	background: #f0f8ff;
+	transform: translateY(-2px);
+}
+
+.ocb-vehicle-card.ocb-vehicle-selected {
+	border-color: #007cba;
+	background: #e7f3ff;
+	box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
+}
+
+.ocb-vehicle-card h4 {
+	margin: 0 0 8px 0;
+	color: #333;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.ocb-vehicle-card p {
+	margin: 5px 0;
+	font-size: 12px;
+	color: #666;
+}
+
+.ocb-vehicle-dimensions,
+.ocb-vehicle-capacity {
+	color: #999;
+	font-size: 11px;
+}
+
+.ocb-vehicle-pricing {
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid #e0e0e0;
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 5px;
+}
+
+.ocb-price {
+	font-size: 18px;
+	font-weight: 700;
+	color: #007cba;
+}
+
+.ocb-vat {
+	font-size: 11px;
+	color: #999;
+}
+
+/* Review Section */
+.ocb-review-section {
+	background: #f9f9f9;
+	border-left: 4px solid #007cba;
+	padding: 15px;
+	margin-bottom: 15px;
+	border-radius: 4px;
+}
+
+.ocb-review-section h3 {
+	margin: 0 0 10px 0;
+	font-size: 14px;
+	color: #333;
+	border: none;
+	padding: 0;
+}
+
+.ocb-review-section p {
+	margin: 0;
+	color: #666;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+/* Buttons */
+.ocb-btn {
+	padding: 12px 24px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.ocb-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ocb-btn-primary {
+	background: #C62828;
+	color: white;
+}
+
+.ocb-btn-primary:hover {
+	background: #B71C1C;
+	box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+}
+
+.ocb-btn-secondary {
+	background: #ffffff;
+	color: #C62828;
+	border: 2px solid #C62828;
+}
+
+.ocb-btn-secondary:hover {
+	background: #C62828;
+	color: #ffffff;
+	box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
+}
+
+.ocb-btn-success {
+	background: #28a745;
+	color: white;
+}
+
+.ocb-btn-success:hover {
+	background: #218838;
+}
+
+/* Button Lookup */
+.ocb-btn-lookup-addresses {
+	padding: 8px 12px;
+	background: #C62828;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
+	margin-top: 8px;
+	transition: all 0.3s ease;
+}
+
+.ocb-btn-lookup-addresses:hover {
+	background: #B71C1C;
+	box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+}
+
+/* Form Actions */
+.ocb-multi-form-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	margin-top: 40px;
+	padding-top: 20px;
+	border-top: 1px solid #e0e0e0;
+}
+
+.ocb-multi-form-actions .ocb-btn {
+	flex: 1;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+	.ocb-multi-form-actions {
+		flex-direction: column;
+	}
+}
+
+/* Modal */
+.ocb-modal {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ocb-modal-content {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	width: 90%;
+	max-width: 600px;
+	max-height: 80vh;
+	overflow-y: auto;
+}
+
+.ocb-modal-header {
+	padding: 20px;
+	border-bottom: 1px solid #e0e0e0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.ocb-modal-header h3 {
+	margin: 0;
+	font-size: 20px;
+	color: #333;
+}
+
+.ocb-modal-close {
+	background: none;
+	border: none;
+	font-size: 28px;
+	cursor: pointer;
+	color: #999;
+}
+
+.ocb-modal-close:hover {
+	color: #333;
+}
+
+.ocb-modal-body {
+	padding: 20px;
+}
+
+.ocb-address-items {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ocb-address-items > div {
+	padding: 12px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	display: flex;
+	align-items: center;
+}
+
+.ocb-address-items > div:hover {
+	background: #f0f0f0;
+	border-color: #007cba;
+}
+
+.ocb-modal-footer {
+	padding: 20px;
+	border-top: 1px solid #e0e0e0;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+/* Loading */
+.ocb-loading {
+	text-align: center;
+	padding: 20px;
+	color: #666;
+	font-style: italic;
+}
+
+/* Messages */
+.ocb-message {
+	padding: 15px;
+	border-radius: 4px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.ocb-message-error {
+	background: #f8d7da;
+	border: 1px solid #f5c6cb;
+	color: #721c24;
+}
+
+.ocb-message-success {
+	background: #d4edda;
+	border: 1px solid #c3e6cb;
+	color: #155724;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.ocb-multi-step-container {
+		margin: 15px;
+		padding: 20px;
+	}
+
+	.ocb-multi-step-indicator {
+		margin-bottom: 30px;
+	}
+
+	.ocb-step-label {
+		font-size: 11px;
+	}
+
+	.ocb-vehicles-grid {
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	}
+
+	.ocb-form-row {
+		grid-template-columns: 1fr;
+	}
+}
