@@ -64,14 +64,19 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 			return $this->githubAPIResult;
 		}
 
-		$url = "https://api.github.com/repos/{$this->username}/{$this->repo}/releases/latest";
+		// Using /releases instead of /releases/latest to support pre-releases if needed
+		$url = "https://api.github.com/repos/{$this->username}/{$this->repo}/releases";
 		
+		// Add default args with User-Agent required by GitHub
+		$args = array(
+			'headers' => array(
+				'User-Agent' => 'WordPress/' . get_bloginfo( 'version' ) . '; ' . get_bloginfo( 'url' ),
+			),
+		);
+
 		// Add access token if provided (for private repos)
-		$args = array();
 		if ( ! empty( $this->accessToken ) ) {
-			$args['headers'] = array(
-				'Authorization' => "token {$this->accessToken}",
-			);
+			$args['headers']['Authorization'] = "token {$this->accessToken}";
 		}
 
 		$response = wp_remote_get( $url, $args );
@@ -80,7 +85,15 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 			return false;
 		}
 
-		$this->githubAPIResult = json_decode( wp_remote_retrieve_body( $response ) );
+		$results = json_decode( wp_remote_retrieve_body( $response ) );
+		
+		// If using /releases, it returns an array. We take the most recent one.
+		if ( is_array( $results ) && ! empty( $results ) ) {
+			$this->githubAPIResult = $results[0];
+		} else {
+			$this->githubAPIResult = false;
+		}
+
 		return $this->githubAPIResult;
 	}
 
