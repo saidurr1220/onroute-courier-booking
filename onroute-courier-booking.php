@@ -2,7 +2,7 @@
 /**
  * Plugin Name: OnRoute Courier Booking
  * Description: Full-featured courier booking system with multi-step quote and booking flow
- * Version: 1.8.1
+ * Version: 1.8.0
  * Author: <a href="https://saidur-it.vercel.app" target="_blank">Md. Saidur Rahman</a>
  * Author URI: https://saidur-it.vercel.app
  * License: GPL v2 or later
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'ONROUTE_COURIER_BOOKING_VERSION', '1.8.1' );
+define( 'ONROUTE_COURIER_BOOKING_VERSION', '1.8.0' );
 define( 'ONROUTE_COURIER_BOOKING_FILE', __FILE__ );
 define( 'ONROUTE_COURIER_BOOKING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ONROUTE_COURIER_BOOKING_URL', plugin_dir_url( __FILE__ ) );

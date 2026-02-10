@@ -42,6 +42,8 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 	 * GitHub zipballs create folders like 'repo-name-tag'.
 	 */
 	public function fix_source_selection( $source, $remote_source, $upgrader, $hook_extra ) {
+		global $wp_filesystem;
+
 		if ( ! isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $this->slug ) {
 			return $source;
 		}
@@ -49,11 +51,11 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 		$plugin_name = dirname( $this->slug );
 		$new_source = trailingslashit( $remote_source ) . $plugin_name;
 
-		if ( rename( $source, $new_source ) ) {
-			return $new_source;
+		if ( $source !== $new_source ) {
+			$wp_filesystem->move( $source, $new_source, true );
 		}
 
-		return $source;
+		return $new_source;
 	}
 
 	/**
@@ -116,7 +118,8 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		if ( version_compare( $latest_version, $current_version, '>' ) ) {
 			$obj = new stdClass();
-			$obj->slug        = $this->slug;
+			$obj->slug        = dirname( $this->slug );
+			$obj->plugin      = $this->slug;
 			$obj->new_version = $latest_version;
 			$obj->url         = "https://github.com/{$this->username}/{$this->repo}";
 			$obj->package     = $repo_info->zipball_url;
@@ -143,7 +146,8 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		$api_obj = new stdClass();
 		$api_obj->name           = 'OnRoute Courier Booking';
-		$api_obj->slug           = $this->slug;
+		$api_obj->slug           = dirname( $this->slug );
+		$api_obj->plugin         = $this->slug;
 		$api_obj->version        = str_replace( 'v', '', $repo_info->tag_name );
 		$api_obj->author         = '<a href="https://saidur-it.vercel.app">Md. Saidur Rahman</a>';
 		$api_obj->homepage       = "https://github.com/{$this->username}/{$this->repo}";
