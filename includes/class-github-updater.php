@@ -44,18 +44,29 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 	public function fix_source_selection( $source, $remote_source, $upgrader, $hook_extra ) {
 		global $wp_filesystem;
 
+		// Check if it's our plugin being installed/updated
 		if ( ! isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $this->slug ) {
 			return $source;
 		}
 
+		// The folder name we want (e.g., 'onroute-courier-booking')
 		$plugin_name = dirname( $this->slug );
-		$new_source = trailingslashit( $remote_source ) . $plugin_name;
+		$new_source  = trailingslashit( $remote_source ) . $plugin_name;
 
+		// If the source (extracted GitHub folder) is different from our plugin folder name
 		if ( $source !== $new_source ) {
-			$wp_filesystem->move( $source, $new_source, true );
+			// If a folder with the same name already exists in the temp directory, remove it
+			if ( $wp_filesystem->is_dir( $new_source ) ) {
+				$wp_filesystem->delete( $new_source, true );
+			}
+
+			// Move the extracted folder to the correct name
+			if ( $wp_filesystem->move( $source, $new_source, true ) ) {
+				return $new_source;
+			}
 		}
 
-		return $new_source;
+		return $source;
 	}
 
 	/**
@@ -118,7 +129,7 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		if ( version_compare( $latest_version, $current_version, '>' ) ) {
 			$obj = new stdClass();
-			$obj->slug        = dirname( $this->slug );
+			$obj->slug        = $this->slug;
 			$obj->plugin      = $this->slug;
 			$obj->new_version = $latest_version;
 			$obj->url         = "https://github.com/{$this->username}/{$this->repo}";
@@ -146,8 +157,7 @@ class OnRoute_Courier_Booking_GitHub_Updater {
 
 		$api_obj = new stdClass();
 		$api_obj->name           = 'OnRoute Courier Booking';
-		$api_obj->slug           = dirname( $this->slug );
-		$api_obj->plugin         = $this->slug;
+		$api_obj->slug           = $this->slug;
 		$api_obj->version        = str_replace( 'v', '', $repo_info->tag_name );
 		$api_obj->author         = '<a href="https://saidur-it.vercel.app">Md. Saidur Rahman</a>';
 		$api_obj->homepage       = "https://github.com/{$this->username}/{$this->repo}";
